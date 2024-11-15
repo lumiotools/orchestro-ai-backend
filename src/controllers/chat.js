@@ -97,7 +97,7 @@ export const handleChat = async (req, res) => {
           name: review.reviewer_name,
           rating: review.rating,
           review: review.review_content,
-          url: review.url,
+          url: review.review_link,
         }));
       return {
         ...carrier,
