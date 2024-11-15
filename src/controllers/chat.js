@@ -18,7 +18,7 @@ let simpleChatEngine; // Adjust the type as per the actual type returned by crea
 })();
 
 export const handleChat = async (req, res) => {
-  const { chatHistory, message, json = false } = req.body;
+  const { chatHistory, message } = req.body;
 
   if (!chatHistory || !message) {
     return res.status(400).json({ error: "Invalid request body" });
@@ -28,72 +28,86 @@ export const handleChat = async (req, res) => {
     return res.status(500).json({ error: "Chat engine not initialized" });
   }
 
-  let response = await functionChatEngine.chat({
+  let response = await jsonChatEngine.chat({
     message: message,
     chatHistory: [systemMessage, ...chatHistory],
   });
 
-  if (response.raw.choices[0].message?.function_call) {
-    const carrierUrls = JSON.parse(
-      response.raw.choices[0].message.function_call.arguments
-    ).carrier_urls;
+  // if (response.raw.choices[0].message?.function_call) {
+  //   const carrierUrls = JSON.parse(
+  //     response.raw.choices[0].message.function_call.arguments
+  //   ).carrier_urls;
 
-    const functionCallResponse = [];
+  //   const functionCallResponse = [];
 
-    carrierUrls.forEach((carrierUrl) => {
-      functionCallResponse.push({
-        [carrierUrl]: fetchReviews(carrierUrl),
-      });
-    });
+  //   carrierUrls.forEach((carrierUrl) => {
+  //     functionCallResponse.push({
+  //       [carrierUrl]: fetchReviews(carrierUrl),
+  //     });
+  //   });
 
-    chatHistory.push({
-      role: "assistant",
-      content: JSON.stringify({
-        function_call: response.raw.choices[0].message.function_call,
-      }),
-    });
+  //   chatHistory.push({
+  //     role: "assistant",
+  //     content: JSON.stringify({
+  //       function_call: response.raw.choices[0].message.function_call,
+  //     }),
+  //   });
 
-    chatHistory.push({
-      role: "tool",
-      content: JSON.stringify(functionCallResponse),
-    });
+  //   chatHistory.push({
+  //     role: "tool",
+  //     content: JSON.stringify(functionCallResponse),
+  //   });
 
-    response = await (json ? jsonChatEngine : simpleChatEngine).chat({
-      message: message,
-      chatHistory: [systemMessage, ...chatHistory],
-    });
-  }
+  //   response = await (json ? jsonChatEngine : simpleChatEngine).chat({
+  //     message: message,
+  //     chatHistory: [systemMessage, ...chatHistory],
+  //   });
+  // }
 
-  const sources = [];
+  // const sources = [];
 
-  response.sourceNodes.forEach(({ node, score }) => {
-    const existingSource = sources.find(
-      (source) => source.url === node.metadata.url
-    );
+  // response.sourceNodes.forEach(({ node, score }) => {
+  //   const existingSource = sources.find(
+  //     (source) => source.url === node.metadata.url
+  //   );
 
-    if (existingSource) {
-      // If URL already exists, update score if the current score is higher
-      if (existingSource.score < score) {
-        existingSource.score = score;
-      }
-    } else {
-      // If URL does not exist, add it to the sources array
-      if (node.metadata.url)
-        sources.push({
-          url: node.metadata.url,
-          score: score,
-        });
+  //   if (existingSource) {
+  //     // If URL already exists, update score if the current score is higher
+  //     if (existingSource.score < score) {
+  //       existingSource.score = score;
+  //     }
+  //   } else {
+  //     // If URL does not exist, add it to the sources array
+  //     if (node.metadata.url)
+  //       sources.push({
+  //         url: node.metadata.url,
+  //         score: score,
+  //       });
+  //   }
+  // });
+
+  // // Sort sources by score in descending order
+  // sources.sort((a, b) => b.score - a.score);
+
+  const carriers = JSON.parse(response.message.content).carriers.map(
+    ({ domainName, ...carrier }) => {
+      const reviews = fetchReviews(domainName)
+        .slice(0, 3)
+        .map((review) => ({
+          name: review.reviewer_name,
+          rating: review.rating,
+          review: review.review_content,
+          url: review.url,
+        }));
+      return {
+        ...carrier,
+        reviews,
+      };
     }
-  });
-
-  // Sort sources by score in descending order
-  sources.sort((a, b) => b.score - a.score);
+  );
 
   return res.status(200).json({
-    message: json
-      ? JSON.parse(response.message.content)
-      : response.message.content,
-    sources,
+    message: { carriers },
   });
 };
 
@@ -101,8 +115,9 @@ export const handleCarrierChat = async (req, res) => {
   const { chatHistory, message, carrierName } = req.body;
 
   console.log({
-    carrierName, message
-  })
+    carrierName,
+    message,
+  });
 
   if (!chatHistory || !message || !carrierName) {
     return res

@@ -38,39 +38,41 @@ export const response_format = {
               about: {
                 type: "string",
               },
-              specialities: {
+              achievements: {
                 type: "array",
                 items: {
                   type: "string",
                 },
               },
+              services: {
+                type: "array",
+                items: {
+                  type: "string",
+                },
+              },
+              headquarter: {
+                type: "string",
+              },
+              type: {
+                type: "string",
+              },
               url: {
                 type: "string",
               },
-              reviews: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    name: {
-                      type: "string",
-                    },
-                    rating: {
-                      type: "number",
-                    },
-                    review: {
-                      type: "string",
-                    },
-                    url: {
-                      type: "string",
-                    },
-                  },
-                  required: ["name", "rating", "review", "url"],
-                  additionalProperties: false,
-                },
+              domainName: {
+                type: "string",
               },
             },
-            required: ["name", "about", "specialities", "url", "reviews"],
+            required: [
+              "name",
+              "about",
+              "achievements",
+              "services",
+              "headquarter",
+              "type",
+              "url",
+              "domainName",
+            ],
             additionalProperties: false,
           },
         },
