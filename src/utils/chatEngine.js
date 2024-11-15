@@ -82,6 +82,11 @@ export function fetchReviews(carrier_url) {
     (review) =>
       (review.carrier ===
         carrier_url.replace("https://", "").replace("http://", "") ||
+        review.carrier.replace("www.", "") ===
+          carrier_url
+            .replace("https://", "")
+            .replace("http://", "")
+            .replace("www.", "") ||
         review.carrier ===
           carrier_url
             .replace("https://", "")
