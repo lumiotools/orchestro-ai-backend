@@ -96,3 +96,37 @@ export const handleChat = async (req, res) => {
     sources,
   });
 };
+
+export const handleCarrierChat = async (req, res) => {
+  const { chatHistory, message, carrierName } = req.body;
+
+  console.log({
+    carrierName, message
+  })
+
+  if (!chatHistory || !message || !carrierName) {
+    return res
+      .status(400)
+      .json({ success: false, error: "Invalid request body" });
+  }
+
+  if (!simpleChatEngine) {
+    return res
+      .status(500)
+      .json({ success: false, error: "Chat engine not initialized" });
+  }
+
+  const systemMessage = {
+    role: "system",
+    content: `You are a knowledgeable shipping assistant for all the shipping queries related to ${carrierName} company.  Your primary goal is to provide clear, accurate, and contextually relevant answers to users' queries about shipping. Always seek clarification if a user's request is ambiguous, and ensure your responses are based on the data provided to you with most current shipping regulations and best practices. Strive for 99% accuracy in your responses, providing detailed explanations when necessary to enhance understanding. If a user requests links or additional resources, provide accurate and reliable links to support their inquiry. Pay close attention to terminology to avoid misunderstandings, and prioritize precision in all information provided. Additionally, please provide feedback on the responses you receive to help improve the assistance offered.`,
+  };
+
+  let response = await simpleChatEngine.chat({
+    message: message,
+    chatHistory: [systemMessage, ...chatHistory],
+  });
+
+  return res
+    .status(200)
+    .json({ success: true, message: response.message.content });
+};
