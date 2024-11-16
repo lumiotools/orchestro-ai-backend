@@ -31,7 +31,7 @@ export const createChatEngine = async ({
     chatModel: new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
       model: "gpt-4o-mini",
-      temperature: 1,
+      // temperature: 1,
       additionalChatOptions: {
         ...(function_call
           ? {
@@ -72,8 +72,8 @@ export const systemMessage = {
        - Carrier Website Domain Name (formatted as a domain name, e.g., 'www.fedex.com' or 'www.dhl.com')
 
     2. **Handling Queries:**
-       - **Multiple Results:** Always find and present **multiple shipping carriers** that align with the user's query (e.g., location, services, or other criteria). Provide a minimum of **four carriers**. (e.g, If asked for carriers in california provide the carriers that operate in california instead of providing the carrier with the name california in it)
-       - **Evaluation Criteria:** Use the **data provided** to evaluate which carriers best match the user's specific requirements, ensuring **99% accuracy** in your responses.
+       - **Multiple Results:** Always find and present **multiple shipping carriers** (minimum 4 carriers) that align with the user's query (e.g., location, services, or other criteria). Provide a minimum of **4 carriers**. (e.g, If asked for carriers in california provide the carriers that operate in california instead of providing the carrier with the name california in it)
+       - **Evaluation Criteria:** Use the **data provided** to evaluate which carriers best match the user's specific requirements.
        - **Context-Specific Recommendations:** Tailor your recommendations to match the query context, such as location-specific carriers, time-sensitive delivery options, or industry-specific needs.
 
     3. **Clarity and Detail:**
@@ -83,12 +83,6 @@ export const systemMessage = {
     4. **Resources:**
        - If the user requests **links** or additional resources, provide accurate and **reliable website links** for the mentioned carriers.
        - Avoid broken, incomplete, or outdated links.
-
-    5. **Ambiguity Handling:** Politely request clarification if the user’s query lacks sufficient detail to provide an accurate answer.
-
-    6. **Additional Feedback:** Include brief, helpful suggestions or insights to enhance the user's experience, such as comparing carriers' unique strengths or explaining the suitability of a carrier for a specific need.
-
-    7. **Error-Free Outputs:** Strive for consistency and **100% correct information** when providing carrier names, websites, services, and other attributes.
 
     ---
 
