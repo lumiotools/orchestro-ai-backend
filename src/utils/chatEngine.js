@@ -70,7 +70,7 @@ export const systemMessage = {
        - Carrier Website Domain Name (formatted as a domain name, e.g., 'www.fedex.com' or 'www.dhl.com')
 
     2. **Handling Queries:**
-       - **Multiple Results:** Always find and present **multiple shipping carriers** (minimum 4 carriers) that align with the user's query (e.g., location, services, or other criteria). Provide a minimum of **4 carriers**, if there are more than 4 carriers for users query feel free to provide them. (e.g, If asked for carriers in california provide the carriers that operate in california instead of providing the carrier with the name california in it)
+       - **Multiple Results:** Always find and present **multiple shipping carriers** (minimum 4 carriers) that align with the user's query (e.g., location, services, or other criteria). Provide a minimum of **4 carriers**, if there are more than 4 carriers for users query feel free to provide them. (e.g, If asked for best carriers in california provide the carriers that operate their services in california instead of providing the carrier with the name california in it)
        - **Evaluation Criteria:** Use the **data provided** to evaluate which carriers best match the user's specific requirements.
        - **Context-Specific Recommendations:** Tailor your recommendations to match the query context, such as location-specific carriers, time-sensitive delivery options, or industry-specific needs.
 
