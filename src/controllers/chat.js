@@ -114,11 +114,6 @@ export const handleChat = async (req, res) => {
 export const handleCarrierChat = async (req, res) => {
   const { chatHistory, message, carrierName } = req.body;
 
-  console.log({
-    carrierName,
-    message,
-  });
-
   if (!chatHistory || !message || !carrierName) {
     return res
       .status(400)
