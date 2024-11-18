@@ -3,6 +3,7 @@ import {
   fetchReviews,
   systemMessage,
 } from "../utils/chatEngine.js";
+import { findCarrierShipengineId } from "../utils/shipengineCarrier.js";
 
 let functionChatEngine; // Adjust the type as per the actual type returned by createChatEngine
 let jsonChatEngine; // Adjust the type as per the actual type returned by createChatEngine
@@ -99,9 +100,13 @@ export const handleChat = async (req, res) => {
           review: review.review_content,
           url: review.review_link,
         }));
+
+      const carrier_id = findCarrierShipengineId(domainName);
+      
       return {
         ...carrier,
         reviews,
+        isRatesAvailable: !!carrier_id,
       };
     }
   );
