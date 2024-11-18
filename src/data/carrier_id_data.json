@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Stamps.com",
+    "url": "stamps.com",
+    "carrier_id": "se-1163355"
+  },
+  {
+    "name": "UPS",
+    "url": "ups.com",
+    "carrier_id": "se-1163357"
+  },
+  {
+    "name": "FedEx",
+    "url": "fedex.com",
+    "carrier_id": "se-1163360"
+  },
+  {
+    "name": "DHL Express MyDHL API",
+    "url": "dhl.com",
+    "carrier_id": "se-1163391"
+  }
+]
