@@ -11,6 +11,45 @@ import { functions, response_format } from "./formats.js";
 
 dotenv.config();
 
+export const API_CHAT_RETRIEVERS = [];
+
+const BASE_DIR = "./src/llama-storage-api-docs";
+
+// Function to create retrievers for all carriers
+
+// Usage
+(async () => {
+  // Read all folders in the base directory
+  const carrierFolders = fs.readdirSync(BASE_DIR, { withFileTypes: true });
+
+  for (const folder of carrierFolders) {
+    // Only process directories
+    if (folder.isDirectory()) {
+      const carrierPath = path.join(BASE_DIR, folder.name);
+
+      // Create storage context for the carrier
+      const storageContext = await storageContextFromDefaults({
+        persistDir: carrierPath,
+      });
+
+      // Initialize vector store index
+      const index = await VectorStoreIndex.init({
+        logProgress: true,
+        storageContext: storageContext,
+      });
+
+      // Create retriever and map it to the carrier URL
+
+      API_CHAT_RETRIEVERS.push({
+        carrier: folder.name,
+        retriever: index.asRetriever(),
+      });
+    }
+  }
+
+  console.log("API Docs Chats Initialized");
+})();
+
 const storageContext = await storageContextFromDefaults({
   persistDir: "./src/llama-storage",
 });
@@ -56,7 +95,7 @@ export const createChatEngine = async ({
 
 export const systemMessage = {
   role: "system",
-  content:`
+  content: `
     You are a highly knowledgeable and intelligent **Shipping Assistant AI** designed to provide precise, contextually relevant, and user-focused answers to shipping-related queries. Your primary goal is to deliver accurate and comprehensive information using only the data provided to you about shipping carriers. Always align your responses with the user's query and offer clarification if the query is ambiguous or incomplete.
 
     When responding to user queries:
