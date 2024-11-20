@@ -1,9 +1,11 @@
 import {
+  API_CHAT_RETRIEVERS,
   createChatEngine,
   fetchReviews,
   systemMessage,
 } from "../utils/chatEngine.js";
 import { findCarrierShipengineId } from "../utils/shipengineCarrier.js";
+import extractDomain from "../utils/urlExtract.js";
 
 let functionChatEngine; // Adjust the type as per the actual type returned by createChatEngine
 let jsonChatEngine; // Adjust the type as per the actual type returned by createChatEngine
@@ -137,6 +139,44 @@ export const handleCarrierChat = async (req, res) => {
   };
 
   let response = await simpleChatEngine.chat({
+    message: message,
+    chatHistory: [systemMessage, ...chatHistory],
+  });
+
+  return res
+    .status(200)
+    .json({ success: true, message: response.message.content });
+};
+
+export const handleCarrierApiDocsChat = async (req, res) => {
+  const { chatHistory, message, carrierUrl } = req.body;
+
+  if (!chatHistory || !message || !carrierUrl) {
+    return res
+      .status(400)
+      .json({ success: false, error: "Invalid request body" });
+  }
+  const uri = extractDomain(carrierUrl);
+  const retriever = API_CHAT_RETRIEVERS.find((retriver) => retriver.carrier === uri);
+  if (!retriever) {
+    return res
+      .status(404)
+      .json({ success: false, error: `No API documentation found for carrier: ${uri}. Please make sure the carrier URL is correct and try again.` });
+  }
+  const chatEngine = new ContextChatEngine({
+    retriever: retriever.retriever,
+    chatModel: new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      model: "gpt-4o-mini",
+    })
+  });
+
+  const systemMessage = {
+    role: "system",
+    content: `You are a knowledgeable shipping assistant for the shipping queries related to ${uri}.  Your primary goal is to provide clear, accurate, and contextually relevant answers to users' queries about shipping. Always ensure your responses are based on the data provided to you with most current shipping regulations and best practices. Strive for 99% accuracy in your responses, providing detailed explanations when necessary to enhance understanding. If a user requests links or additional resources, provide accurate and reliable links to support their inquiry. Pay close attention to terminology to avoid misunderstandings, and prioritize precision in all information provided. Additionally, please provide feedback on the responses you receive to help improve the assistance offered.`,
+  };
+
+  let response = await chatEngine.chat({
     message: message,
     chatHistory: [systemMessage, ...chatHistory],
   });
