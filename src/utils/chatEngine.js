@@ -44,6 +44,7 @@ const BASE_DIR = "./src/llama-storage-api-docs";
         carrier: folder.name,
         retriever: index.asRetriever(),
       });
+     
     }
   }
 
