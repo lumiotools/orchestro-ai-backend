@@ -11,6 +11,7 @@ export const handleWebsiteCapture = async (req, res) => {
   puppeteer.use(StealthPlugin());
   const browser = await puppeteer.launch({
     args: ["--disable-http2"],
+    userDataDir: "./project/puppeteer",
   });
 
   try {
