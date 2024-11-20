@@ -29,6 +29,7 @@ export const handleWebsiteCapture = async (req, res) => {
     });
     res.end(screenshotBuffer);
   } catch (error) {
+    console.log(error)
     await browser.close();
 
     const svgPath = "assets/website-screenshot-error.svg";
