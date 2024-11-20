@@ -13,7 +13,8 @@ import { createIndex, createAPIDocIndex } from "./utils/createIndex.js";
   console.log("Initializing api docs indexing...");
   const all_carrier_documents = getAPIDocuments();
 
-  const carrier_documents = all_carrier_documents.slice(0, 37);
+  const carrier_documents = all_carrier_documents.slice(37);
+
   for (const carrier of carrier_documents) {
     console.log(
       `Progress ${carrier_documents.indexOf(carrier)}/${
