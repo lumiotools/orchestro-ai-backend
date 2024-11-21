@@ -122,20 +122,51 @@ export const handleChat = async (req, res) => {
     }
   );
 
-  const activeCarriers = [];
+  const activeCarriers = (
+    await Promise.all(
+      carriers.map(async (carrier) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000); // Set timeout to 5 seconds
 
-  for (const carrier of carriers) {
-    try {
-      const response = await fetch(carrier.url);
-      if (response.status < 300) {
-        activeCarriers.push(carrier);
-      } else {
-        console.log(`Error fetching carrier URL: ${carrier.url}`);
-      }
-    } catch (error) {
-      console.log(`Error fetching carrier URL: ${carrier.url}`);
-    }
-  }
+        try {
+          const response = await fetch(carrier.url, {
+            signal: controller.signal,
+          });
+          clearTimeout(timeoutId); // Clear the timeout if the request succeeds
+
+          if (response.status < 300) {
+            console.log(`Fetched carrier URL: ${carrier.url}`);
+            return carrier;
+          } else {
+            console.log(`Error fetching carrier URL: ${carrier.url}`);
+            throw new Error(`Error fetching carrier URL: ${carrier.url}`);
+          }
+        } catch (error) {
+          clearTimeout(timeoutId); // Clear the timeout if an error occurs
+          if (error.name === "AbortError") {
+            console.log(`Request timed out for carrier URL: ${carrier.url}`);
+          } else {
+            console.log(`Error fetching carrier URL: ${carrier.url}`);
+          }
+          return false;
+        }
+      })
+    )
+  ).filter((carrier) => carrier !== false);
+
+  // for (const carrier of carriers) {
+  //   try {
+  //     const response = await fetch(carrier.url);
+  //     if (response.status < 300) {
+  //       activeCarriers.push(carrier);
+  //       console.log(`Fetched carrier URL: ${carrier.url}`);
+  //     } else {
+  //       console.log(`Error fetching carrier URL: ${carrier.url}`);
+  //     }
+  //   } catch (error) {
+  //     console.log(`Error fetching carrier URL: ${carrier.url}`);
+  //   }
+  // }
 
   return res.status(200).json({
     message: { carriers: activeCarriers },
