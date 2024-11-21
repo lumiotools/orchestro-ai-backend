@@ -168,8 +168,12 @@ export const handleChat = async (req, res) => {
   //   }
   // }
 
+  const activeCarriers = carriers.filter(
+    (carrier) => !carrier.url.includes("yrc.com")
+  );
+
   return res.status(200).json({
-    message: { carriers },
+    message: { carriers: activeCarriers },
   });
 };
 
