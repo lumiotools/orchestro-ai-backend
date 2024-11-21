@@ -122,8 +122,23 @@ export const handleChat = async (req, res) => {
     }
   );
 
+  const activeCarriers = [];
+
+  for (const carrier of carriers) {
+    try {
+      const response = await fetch(carrier.url);
+      if (response.status < 300) {
+        activeCarriers.push(carrier);
+      } else {
+        console.log(`Error fetching carrier URL: ${carrier.url}`);
+      }
+    } catch (error) {
+      console.log(`Error fetching carrier URL: ${carrier.url}`);
+    }
+  }
+
   return res.status(200).json({
-    message: { carriers },
+    message: { carriers: activeCarriers },
   });
 };
 
