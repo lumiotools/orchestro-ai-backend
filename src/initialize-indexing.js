@@ -1,11 +1,15 @@
-import { getDocuments, getAPIDocuments } from "./utils/getDocuments.js";
-import { createIndex, createAPIDocIndex } from "./utils/createIndex.js";
-
-const documents = getDocuments();
+import { getDocuments, getAPIDocuments, getAuditCompaniesDocuments, getRateShippingEnginesDocuments } from "./utils/getDocuments.js";
+import {
+  createIndex,
+  createAPIDocIndex,
+  createAuditCompaniesIndex,
+} from "./utils/createIndex.js";
 
 (async () => {
   console.log("Initializing chat engine...");
-  await createIndex(documents);
+  await createIndex(getDocuments());
+  await createAuditCompaniesIndex(getAuditCompaniesDocuments());
+  await createRateShippingEnginesIndex(getRateShippingEnginesDocuments());
   console.log("Chat engine initialized");
 })();
 

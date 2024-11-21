@@ -25,6 +25,52 @@ export const getDocuments = () => {
   return documents;
 };
 
+export const getAuditCompaniesDocuments = () => {
+  const data = JSON.parse(
+    fs.readFileSync(
+      path.join(import.meta.dirname, "../", "/data/audit_companies_data.json"),
+      "utf-8"
+    )
+  );
+
+  const documents = [];
+  data.forEach((doc) => {
+    documents.push(
+      new Document({
+        text: doc.text,
+        metadata: {
+          url: doc.url,
+        },
+      })
+    );
+  });
+
+  return documents;
+};
+
+export const getRateShippingEnginesDocuments = () => {
+  const data = JSON.parse(
+    fs.readFileSync(
+      path.join(import.meta.dirname, "../", "/data/rate_shipping_engines_data.json"),
+      "utf-8"
+    )
+  );
+
+  const documents = [];
+  data.forEach((doc) => {
+    documents.push(
+      new Document({
+        text: doc.text,
+        metadata: {
+          url: doc.url,
+        },
+      })
+    );
+  });
+
+  return documents;
+};
+
 export const getAPIDocuments = () => {
   const apiData = JSON.parse(
     fs.readFileSync(
