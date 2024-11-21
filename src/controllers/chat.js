@@ -1,3 +1,4 @@
+import { ContextChatEngine, OpenAI } from "llamaindex";
 import {
   API_CHAT_RETRIEVERS,
   createChatEngine,
@@ -36,62 +37,6 @@ export const handleChat = async (req, res) => {
     chatHistory: [systemMessage, ...chatHistory],
   });
 
-  // if (response.raw.choices[0].message?.function_call) {
-  //   const carrierUrls = JSON.parse(
-  //     response.raw.choices[0].message.function_call.arguments
-  //   ).carrier_urls;
-
-  //   const functionCallResponse = [];
-
-  //   carrierUrls.forEach((carrierUrl) => {
-  //     functionCallResponse.push({
-  //       [carrierUrl]: fetchReviews(carrierUrl),
-  //     });
-  //   });
-
-  //   chatHistory.push({
-  //     role: "assistant",
-  //     content: JSON.stringify({
-  //       function_call: response.raw.choices[0].message.function_call,
-  //     }),
-  //   });
-
-  //   chatHistory.push({
-  //     role: "tool",
-  //     content: JSON.stringify(functionCallResponse),
-  //   });
-
-  //   response = await (json ? jsonChatEngine : simpleChatEngine).chat({
-  //     message: message,
-  //     chatHistory: [systemMessage, ...chatHistory],
-  //   });
-  // }
-
-  // const sources = [];
-
-  // response.sourceNodes.forEach(({ node, score }) => {
-  //   const existingSource = sources.find(
-  //     (source) => source.url === node.metadata.url
-  //   );
-
-  //   if (existingSource) {
-  //     // If URL already exists, update score if the current score is higher
-  //     if (existingSource.score < score) {
-  //       existingSource.score = score;
-  //     }
-  //   } else {
-  //     // If URL does not exist, add it to the sources array
-  //     if (node.metadata.url)
-  //       sources.push({
-  //         url: node.metadata.url,
-  //         score: score,
-  //       });
-  //   }
-  // });
-
-  // // Sort sources by score in descending order
-  // sources.sort((a, b) => b.score - a.score);
-
   const carriers = JSON.parse(response.message.content).carriers.map(
     ({ domainName, ...carrier }) => {
       const reviews = fetchReviews(domainName)
@@ -104,11 +49,13 @@ export const handleChat = async (req, res) => {
         }));
 
       const carrier_id = findCarrierShipengineId(domainName);
+      const isApiDocsAvailable = API_CHAT_RETRIEVERS.some((retriever) => retriever.carrier === extractDomain(domainName));
       
       return {
         ...carrier,
         reviews,
         isRatesAvailable: !!carrier_id,
+        isApiDocsAvailable,
       };
     }
   );
@@ -165,6 +112,7 @@ export const handleCarrierApiDocsChat = async (req, res) => {
   }
   const chatEngine = new ContextChatEngine({
     retriever: retriever.retriever,
+    contextRole:"system",
     chatModel: new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
       model: "gpt-4o-mini",
@@ -173,7 +121,15 @@ export const handleCarrierApiDocsChat = async (req, res) => {
 
   const systemMessage = {
     role: "system",
-    content: `You are a knowledgeable shipping assistant for the shipping queries related to ${uri}.  Your primary goal is to provide clear, accurate, and contextually relevant answers to users' queries about shipping. Always ensure your responses are based on the data provided to you with most current shipping regulations and best practices. Strive for 99% accuracy in your responses, providing detailed explanations when necessary to enhance understanding. If a user requests links or additional resources, provide accurate and reliable links to support their inquiry. Pay close attention to terminology to avoid misunderstandings, and prioritize precision in all information provided. Additionally, please provide feedback on the responses you receive to help improve the assistance offered.`,
+    content: `You are an expert shipping chatbot with in-depth knowledge of the API documentation for ${uri}. Your primary goal is to provide clear, accurate, and contextually relevant answers to users' queries about the APIs of ${uri}. You have access to all the API docs in your memory and can answer specific questions related to endpoints, parameters, authentication, responses, error handling, use cases, and integration best practices.
+
+    Always ensure your responses are based on the provided API documentation and current industry standards. Providing detailed explanations and examples where necessary to enhance understanding. When users ask for specific details, provide insights based on the API specs. Additionally, always include the relevant links to the sections of the API documentation or other sources you referenced in your responses to ensure transparency and enable users to explore further.
+
+    For every query, provide the proper endpoint URLs along with their request and response formats, including details of the required and optional parameters, expected response codes, and example payloads for both requests and responses. Ensure the examples are realistic and relevant to the use case to make integration easier for users.
+
+    Do not attempt to modify or reinterpret the API documentation. Provide the information exactly as it is presented in the API documentation to maintain accuracy and consistency. If you do not have access to specific API documentation or cannot verify a detail, do not generate incorrect or speculative information. Instead, apologize and clearly state that you do not have access to that detail.
+
+    Pay close attention to technical terminology to avoid misunderstandings, and maintain a professional tone. Additionally, provide constructive feedback if the query contains inconsistencies, and suggest alternatives or corrections to improve the user's understanding or integration process.`,
   };
 
   let response = await chatEngine.chat({
