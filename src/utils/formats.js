@@ -19,7 +19,7 @@ export const functions = [
   },
 ];
 
-export const response_format = {
+export const results_response_format = {
   type: "json_schema",
   json_schema: {
     name: "ship-search-schema",

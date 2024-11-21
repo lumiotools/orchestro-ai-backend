@@ -3,70 +3,44 @@ import path from "path";
 import { Document } from "llamaindex";
 
 export const getDocuments = () => {
-  const data = JSON.parse(
+  const carriersData = JSON.parse(
     fs.readFileSync(
       path.join(import.meta.dirname, "../", "/data/extended_scraped_data.json"),
       "utf-8"
     )
   );
 
-  const documents = [];
-  data.forEach((doc) => {
-    documents.push(
-      new Document({
-        text: doc.text,
-        metadata: {
-          url: doc.url,
-        },
-      })
-    );
-  });
-
-  return documents;
-};
-
-export const getAuditCompaniesDocuments = () => {
-  const data = JSON.parse(
+  const auditCompaniesData = JSON.parse(
     fs.readFileSync(
       path.join(import.meta.dirname, "../", "/data/audit_companies_data.json"),
       "utf-8"
     )
   );
 
-  const documents = [];
-  data.forEach((doc) => {
-    documents.push(
-      new Document({
-        text: doc.text,
-        metadata: {
-          url: doc.url,
-        },
-      })
-    );
-  });
-
-  return documents;
-};
-
-export const getRateShippingEnginesDocuments = () => {
-  const data = JSON.parse(
+  const rateShippingEnginesData = JSON.parse(
     fs.readFileSync(
-      path.join(import.meta.dirname, "../", "/data/rate_shipping_engines_data.json"),
+      path.join(
+        import.meta.dirname,
+        "../",
+        "/data/rate_shipping_engines_data.json"
+      ),
       "utf-8"
     )
   );
 
   const documents = [];
-  data.forEach((doc) => {
-    documents.push(
-      new Document({
-        text: doc.text,
-        metadata: {
-          url: doc.url,
-        },
-      })
-    );
-  });
+  [...carriersData, ...auditCompaniesData, ...rateShippingEnginesData].forEach(
+    (doc) => {
+      documents.push(
+        new Document({
+          text: doc.text,
+          metadata: {
+            url: doc.url,
+          },
+        })
+      );
+    }
+  );
 
   return documents;
 };

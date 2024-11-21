@@ -1,23 +1,21 @@
 import { ContextChatEngine, OpenAI } from "llamaindex";
 import {
   API_CHAT_RETRIEVERS,
-  createChatEngine,
+  createCompanyChatEngine,
+  createResultsChatEngine,
   fetchReviews,
-  systemMessage,
 } from "../utils/chatEngine.js";
 import { findCarrierShipengineId } from "../utils/shipengineCarrier.js";
 import extractDomain from "../utils/urlExtract.js";
 
-let functionChatEngine; // Adjust the type as per the actual type returned by createChatEngine
-let jsonChatEngine; // Adjust the type as per the actual type returned by createChatEngine
-let simpleChatEngine; // Adjust the type as per the actual type returned by createChatEngine
+let resultsChatEngine;
+let companyChatEngine;
 
 // Initialize chatEngine once at startup
 (async () => {
   console.log("Initializing chat engine...");
-  functionChatEngine = await createChatEngine({ function_call: true });
-  jsonChatEngine = await createChatEngine({ output_response_format: true });
-  simpleChatEngine = await createChatEngine({});
+  resultsChatEngine = await createResultsChatEngine();
+  companyChatEngine = await createCompanyChatEngine();
   console.log("Chat engine initialized");
 })();
 
@@ -28,11 +26,73 @@ export const handleChat = async (req, res) => {
     return res.status(400).json({ error: "Invalid request body" });
   }
 
-  if (!functionChatEngine || !simpleChatEngine) {
+  if (!resultsChatEngine) {
     return res.status(500).json({ error: "Chat engine not initialized" });
   }
 
-  let response = await jsonChatEngine.chat({
+  const systemMessage = {
+    role: "system",
+    content: `
+      You are a highly knowledgeable and intelligent **Shipping Assistant AI** designed to provide precise, contextually relevant, and user-focused answers to shipping-related queries. Your primary goal is to deliver accurate and comprehensive information using only the data provided to you about **shipping carriers, audit companies, and rate shipping engines**. Always align your responses with the user's query and offer clarification if the query is ambiguous or incomplete.
+  
+      When responding to user queries:
+  
+      ### 1. **Core Information to Include for Each Entity:**
+         - **Name**  
+         - **Headquarters Location**  
+         - **Type** (e.g., Carrier, Audit Company, Rate Engine)  
+         - **Key Features/Services**  
+         - **Key Achievements**  
+         - **Website URL**  
+         - **Website Domain Name** (formatted as a domain name, e.g., 'www.fedex.com', 'www.shipengine.com')
+  
+      ### 2. **Handling Queries:**
+      - **Multiple Results:**  
+        - Always find and present **multiple relevant entities** (minimum 4) that align with the user's query.  
+        - For example:  
+          - **Carriers**: Provide carriers that operate in a specific region or meet the criteria.  
+          - **Audit Companies**: Suggest companies specializing in parcel or freight auditing.  
+          - **Rate Engines**: Recommend engines based on integration capabilities or supported carriers.  
+  
+      - **Evaluation Criteria:**  
+        - Use the **data provided** to evaluate and recommend the best options tailored to the user's needs.  
+  
+      - **Context-Specific Recommendations:**  
+        - Tailor your recommendations to the query, such as location-specific carriers, cost-effective rate engines, or audit companies specializing in specific shipping modes.
+  
+      ### 3. **Clarity and Detail:**
+      - **Terminology:**  
+        - Use precise, user-friendly language and avoid jargon.  
+  
+      - **Explanations:**  
+        - Provide brief, relevant details to enhance the user's understanding.
+  
+      ### 4. **Resources:**
+      - If the user requests **links** or additional resources, provide accurate and **reliable website links** for the mentioned entities.  
+      - Avoid broken, incomplete, or outdated links.  
+  
+      ---
+  
+      ### **Unified Output Schema:**
+      For all entities (carriers, audit companies, and rate engines), the output includes:
+      - **Name**  
+      - **Headquarters Location**  
+      - **Type**  
+      - **Key Features/Services**  
+      - **Key Achievements**  
+      - **Website URL**  
+      - **Website Domain Name**
+  
+      ---
+  
+      ### **Your Key Objectives:**
+      - Deliver precise, clear, and **data-driven recommendations** tailored to the user's query, covering carriers, audit companies, and rate shipping engines.  
+      - Ensure the user receives a list of **relevant entities** (minimum 4 are strictly required) that match their requirements, along with detailed information about each entity.  
+      - Continuously improve the quality of assistance by aligning responses with user feedback and expectations.
+      `,
+  };
+
+  let response = await resultsChatEngine.chat({
     message: message,
     chatHistory: [systemMessage, ...chatHistory],
   });
@@ -76,7 +136,7 @@ export const handleCarrierChat = async (req, res) => {
       .json({ success: false, error: "Invalid request body" });
   }
 
-  if (!simpleChatEngine) {
+  if (!companyChatEngine) {
     return res
       .status(500)
       .json({ success: false, error: "Chat engine not initialized" });
@@ -87,7 +147,7 @@ export const handleCarrierChat = async (req, res) => {
     content: `You are a knowledgeable shipping assistant for all the shipping queries related to ${carrierName}.  Your primary goal is to provide clear, accurate, and contextually relevant answers to users' queries about shipping. Always ensure your responses are based on the data provided to you with most current shipping regulations and best practices. Strive for 99% accuracy in your responses, providing detailed explanations when necessary to enhance understanding. If a user requests links or additional resources, provide accurate and reliable links to support their inquiry. Pay close attention to terminology to avoid misunderstandings, and prioritize precision in all information provided. Additionally, please provide feedback on the responses you receive to help improve the assistance offered.`,
   };
 
-  let response = await simpleChatEngine.chat({
+  let response = await companyChatEngine.chat({
     message: message,
     chatHistory: [systemMessage, ...chatHistory],
   });
@@ -110,12 +170,10 @@ export const handleCarrierApiDocsChat = async (req, res) => {
     (retriver) => retriver.carrier === uri
   );
   if (!retriever) {
-    return res
-      .status(404)
-      .json({
-        success: false,
-        error: `No API documentation found for carrier: ${uri}. Please make sure the carrier URL is correct and try again.`,
-      });
+    return res.status(404).json({
+      success: false,
+      error: `No API documentation found for carrier: ${uri}. Please make sure the carrier URL is correct and try again.`,
+    });
   }
 
   const systemMessage = {
