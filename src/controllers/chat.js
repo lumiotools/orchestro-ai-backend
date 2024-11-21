@@ -49,8 +49,10 @@ export const handleChat = async (req, res) => {
         }));
 
       const carrier_id = findCarrierShipengineId(domainName);
-      const isApiDocsAvailable = API_CHAT_RETRIEVERS.some((retriever) => retriever.carrier === extractDomain(domainName));
-      
+      const isApiDocsAvailable = API_CHAT_RETRIEVERS.some(
+        (retriever) => retriever.carrier === extractDomain(domainName)
+      );
+
       return {
         ...carrier,
         reviews,
@@ -104,20 +106,17 @@ export const handleCarrierApiDocsChat = async (req, res) => {
       .json({ success: false, error: "Invalid request body" });
   }
   const uri = extractDomain(carrierUrl);
-  const retriever = API_CHAT_RETRIEVERS.find((retriver) => retriver.carrier === uri);
+  const retriever = API_CHAT_RETRIEVERS.find(
+    (retriver) => retriver.carrier === uri
+  );
   if (!retriever) {
     return res
       .status(404)
-      .json({ success: false, error: `No API documentation found for carrier: ${uri}. Please make sure the carrier URL is correct and try again.` });
+      .json({
+        success: false,
+        error: `No API documentation found for carrier: ${uri}. Please make sure the carrier URL is correct and try again.`,
+      });
   }
-  const chatEngine = new ContextChatEngine({
-    retriever: retriever.retriever,
-    contextRole:"system",
-    chatModel: new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-      model: "gpt-4o-mini",
-    })
-  });
 
   const systemMessage = {
     role: "system",
@@ -125,12 +124,22 @@ export const handleCarrierApiDocsChat = async (req, res) => {
 
     Always ensure your responses are based on the provided API documentation and current industry standards. Providing detailed explanations and examples where necessary to enhance understanding. When users ask for specific details, provide insights based on the API specs. Additionally, always include the relevant links to the sections of the API documentation or other sources you referenced in your responses to ensure transparency and enable users to explore further.
 
-    For every query, provide the proper endpoint URLs along with their request and response formats, including details of the required and optional parameters, expected response codes, and example payloads for both requests and responses. Ensure the examples are realistic and relevant to the use case to make integration easier for users.
+    For every query, provide the proper accurate endpoint URLs (if available) along with their request and response formats (like the query params or request body if applicable), including details of the required and optional parameters (if available), expected response codes (if available), and example payloads for both requests and responses (if applicable). Ensure the examples are realistic and relevant to the use case to make integration easier for users.
 
-    Do not attempt to modify or reinterpret the API documentation. Provide the information exactly as it is presented in the API documentation to maintain accuracy and consistency. If you do not have access to specific API documentation or cannot verify a detail, do not generate incorrect or speculative information. Instead, apologize and clearly state that you do not have access to that detail.
+    Do not attempt to present modified or reinterpreted API documentation. Provide the information exactly as it is presented in the API documentation to maintain accuracy and consistency. If you do not have access to specific API documentation or you are not sure about your source or cannot verify a detail, do not generate incorrect or speculative information. Instead, apologize and clearly state that you do not have access to that detail.
 
     Pay close attention to technical terminology to avoid misunderstandings, and maintain a professional tone. Additionally, provide constructive feedback if the query contains inconsistencies, and suggest alternatives or corrections to improve the user's understanding or integration process.`,
   };
+
+  const chatEngine = new ContextChatEngine({
+    retriever: retriever.retriever,
+    systemPrompt: systemMessage.content,
+    contextRole: "system",
+    chatModel: new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      model: "gpt-4o-mini",
+    }),
+  });
 
   let response = await chatEngine.chat({
     message: message,
