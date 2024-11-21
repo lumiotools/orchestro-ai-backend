@@ -1,8 +1,14 @@
-import { getDocuments, getAPIDocuments, getAuditCompaniesDocuments, getRateShippingEnginesDocuments } from "./utils/getDocuments.js";
+import {
+  getDocuments,
+  getAPIDocuments,
+  getAuditCompaniesDocuments,
+  getRateShippingEnginesDocuments,
+} from "./utils/getDocuments.js";
 import {
   createIndex,
   createAPIDocIndex,
   createAuditCompaniesIndex,
+  createRateShippingEnginesIndex,
 } from "./utils/createIndex.js";
 
 (async () => {
