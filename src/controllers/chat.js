@@ -239,14 +239,20 @@ export const handleCarrierChat = async (req, res) => {
     content: `You are a knowledgeable shipping assistant for all the shipping queries related to ${carrierName}.  Your primary goal is to provide clear, accurate, and contextually relevant answers to users' queries about shipping. Always ensure your responses are based on the data provided to you with most current shipping regulations and best practices. Strive for 99% accuracy in your responses, providing detailed explanations when necessary to enhance understanding. If a user requests links or additional resources, provide accurate and reliable links to support their inquiry. Pay close attention to terminology to avoid misunderstandings, and prioritize precision in all information provided. Additionally, please provide feedback on the responses you receive to help improve the assistance offered.`,
   };
 
-  let response = await companyChatEngine.chat({
+  let streamingResponse = await companyChatEngine.chat({
     message: message,
     chatHistory: [systemMessage, ...chatHistory],
+    stream: true,
   });
 
-  return res
-    .status(200)
-    .json({ success: true, message: response.message.content });
+  res.setHeader("Content-Type", "text; charset=utf-8");
+  res.setHeader("Transfer-Encoding", "chunked");
+
+  for await (const response of streamingResponse) {
+    res.write(response.message.content);
+  }
+
+  res.end();
 };
 
 export const handleCarrierApiDocsChat = async (req, res) => {
@@ -291,12 +297,18 @@ export const handleCarrierApiDocsChat = async (req, res) => {
     }),
   });
 
-  let response = await chatEngine.chat({
+  let streamingResponse = await chatEngine.chat({
     message: message,
     chatHistory: [systemMessage, ...chatHistory],
+    stream: true,
   });
 
-  return res
-    .status(200)
-    .json({ success: true, message: response.message.content });
+  res.setHeader("Content-Type", "text; charset=utf-8");
+  res.setHeader("Transfer-Encoding", "chunked");
+
+  for await (const response of streamingResponse) {
+    res.write(response.message.content);
+  }
+
+  res.end();
 };
