@@ -31,42 +31,44 @@ export const handleChat = async (req, res) => {
     return res.status(500).json({ error: "Chat engine not initialized" });
   }
 
-  let semanticResponse = await GroqEngine.chat.completions.create({
-    model: "llama3-8b-8192",
-    messages: [
-      {
-        role: "system",
-        content: `You are Shipsearch AI, a specialist in the shipping industry, offering insights on delivery, inventory, warehouses, carriers, couriers, audit companies, rate-finding engines, and other logistics-related topics. For queries outside these areas, respond with isRelated: False and inform the user that your expertise is limited to shipping and logistics. Encourage them to ask questions related to shipping companies or related topics.
+  try {
+    let semanticResponse = await GroqEngine.chat.completions.create({
+      model: "llama3-8b-8192",
+      messages: [
+        {
+          role: "system",
+          content: `You are ShipSearch AI, a specialist in the shipping industry, offering insights on delivery, inventory, warehouses, carriers, couriers, audit companies, rate-finding engines, and other logistics-related topics. If user queries about any of these topics and if it can be answered as a list of companies then only respond with isCompanyListPossible: true, else for all other queries, respond with isCompanyListPossible: false and inform the user that your expertise is shipping and logistics. Encourage them to ask questions related to shipping companies or related topics.
 
           Required JSON Schema:
 
           {
-          isRelated: boolean,
-          reason: string
+          isCompanyListPossible: boolean,
+          content: string
           }
           
           `,
-      },
-      {
-        role: "user",
-        content: message,
-      },
-    ],
-    response_format: {
-      type: "json_object",
-    },
-  });
-
-  semanticResponse = JSON.parse(semanticResponse.choices[0].message.content);
-
-  if (!semanticResponse.isRelated) {
-    return res.status(200).json({
-      message: {
-        carriers: [],
-        content: semanticResponse.reason,
+        },
+        {
+          role: "user",
+          content: message,
+        },
+      ],
+      response_format: {
+        type: "json_object",
       },
     });
-  }
+
+    semanticResponse = JSON.parse(semanticResponse.choices[0].message.content);
+
+    if (!semanticResponse.isCompanyListPossible) {
+      return res.status(200).json({
+        message: {
+          carriers: [],
+          content: semanticResponse.content,
+        },
+      });
+    }
+  } catch (error) {}
 
   const systemMessage = {
     role: "system",
