@@ -8,8 +8,13 @@ import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import { results_response_format } from "./formats.js";
+import Groq from "groq-sdk";
 
 dotenv.config();
+
+export const GroqEngine = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+});
 
 export const API_CHAT_RETRIEVERS = [];
 

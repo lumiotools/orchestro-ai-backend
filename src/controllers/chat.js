@@ -4,6 +4,7 @@ import {
   createCompanyChatEngine,
   createResultsChatEngine,
   fetchReviews,
+  GroqEngine,
 } from "../utils/chatEngine.js";
 import { findCarrierShipengineId } from "../utils/shipengineCarrier.js";
 import extractDomain from "../utils/urlExtract.js";
@@ -28,6 +29,43 @@ export const handleChat = async (req, res) => {
 
   if (!resultsChatEngine) {
     return res.status(500).json({ error: "Chat engine not initialized" });
+  }
+
+  let semanticResponse = await GroqEngine.chat.completions.create({
+    model: "llama3-8b-8192",
+    messages: [
+      {
+        role: "system",
+        content: `You are a Shipsearch AI. If users query does not belongs to shipping carriers, shipping courier companies, audit companies, rate shipping engines then You need to respond false for isRelated, and a reason explaining the user that you do not have knowledge about that, and you only have knowledge about shipping companies. Ask users to feel free to ask questions about shipping companies.
+
+          Required JSON Schema:
+
+          {
+          isRelated: boolean,
+          reason: string
+          }
+          
+          `,
+      },
+      {
+        role: "user",
+        content: message,
+      },
+    ],
+    response_format: {
+      type: "json_object",
+    },
+  });
+
+  semanticResponse = JSON.parse(semanticResponse.choices[0].message.content);
+
+  if (!semanticResponse.isRelated) {
+    return res.status(200).json({
+      message: {
+        carriers: [],
+        content: semanticResponse.reason,
+      },
+    });
   }
 
   const systemMessage = {
@@ -169,7 +207,9 @@ export const handleChat = async (req, res) => {
   // }
 
   const activeCarriers = carriers.filter(
-    (carrier) => !carrier.url.includes("yrc.com") && !carrier.url.includes("freightauditsolutions.com")
+    (carrier) =>
+      !carrier.url.includes("yrc.com") &&
+      !carrier.url.includes("freightauditsolutions.com")
   );
 
   return res.status(200).json({
