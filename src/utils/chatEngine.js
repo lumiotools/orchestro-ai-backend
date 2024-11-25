@@ -18,19 +18,21 @@ export const GroqEngine = new Groq({
 
 export const API_CHAT_RETRIEVERS = [];
 
-const BASE_DIR = "./src/llama-storage-api-docs";
+const API_DOCS_BASE_DIR = "./src/llama-storage-api-docs";
 
 // Function to create retrievers for all carriers
 
 // Usage
 (async () => {
   // Read all folders in the base directory
-  const carrierFolders = fs.readdirSync(BASE_DIR, { withFileTypes: true });
+  const carrierFolders = fs.readdirSync(API_DOCS_BASE_DIR, {
+    withFileTypes: true,
+  });
 
   for (const folder of carrierFolders) {
     // Only process directories
     if (folder.isDirectory()) {
-      const carrierPath = path.join(BASE_DIR, folder.name);
+      const carrierPath = path.join(API_DOCS_BASE_DIR, folder.name);
 
       // Create storage context for the carrier
       const storageContext = await storageContextFromDefaults({
@@ -53,6 +55,47 @@ const BASE_DIR = "./src/llama-storage-api-docs";
   }
 
   console.log("API Docs Chats Initialized");
+})();
+
+export const RATES_NEGOTIATION_CHAT_RETRIEVERS = [];
+
+const RATES_NEGOTIATION_BASE_DIR = "./src/llama-storage-rates-negotiation";
+
+// Function to create retrievers for all carriers
+
+// Usage
+(async () => {
+  // Read all folders in the base directory
+  const carrierFolders = fs.readdirSync(RATES_NEGOTIATION_BASE_DIR, {
+    withFileTypes: true,
+  });
+
+  for (const folder of carrierFolders) {
+    // Only process directories
+    if (folder.isDirectory()) {
+      const carrierPath = path.join(RATES_NEGOTIATION_BASE_DIR, folder.name);
+
+      // Create storage context for the carrier
+      const storageContext = await storageContextFromDefaults({
+        persistDir: carrierPath,
+      });
+
+      // Initialize vector store index
+      const index = await VectorStoreIndex.init({
+        logProgress: true,
+        storageContext: storageContext,
+      });
+
+      // Create retriever and map it to the carrier URL
+
+      RATES_NEGOTIATION_CHAT_RETRIEVERS.push({
+        carrier: folder.name,
+        retriever: index.asRetriever(),
+      });
+    }
+  }
+
+  console.log("Rates Negotiation Chats Initialized");
 })();
 
 const storageContext = await storageContextFromDefaults({
