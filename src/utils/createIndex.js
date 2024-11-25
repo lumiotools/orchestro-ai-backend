@@ -67,3 +67,21 @@ export const createAPIDocIndex = async (documents, carrierUrl) => {
 
   return index;
 };
+
+
+export const createRateNegotiationIndex = async (documents, carrierUrl) => {
+  fs.mkdirSync(`./src/llama-storage-rates-negotiation/${carrierUrl}`, {
+    recursive: true,
+  });
+
+  const storageContext = await storageContextFromDefaults({
+    persistDir: `./src/llama-storage-rates-negotiation/${carrierUrl}`,
+  });
+
+  const index = await VectorStoreIndex.fromDocuments(documents, {
+    logProgress: true,
+    storageContext,
+  });
+
+  return index;
+};

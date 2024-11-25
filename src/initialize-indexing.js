@@ -1,5 +1,5 @@
-import { getDocuments, getAPIDocuments } from "./utils/getDocuments.js";
-import { createIndex, createAPIDocIndex } from "./utils/createIndex.js";
+import { getDocuments, getAPIDocuments, getRateNegotiationDocuments } from "./utils/getDocuments.js";
+import { createIndex, createAPIDocIndex, createRateNegotiationIndex } from "./utils/createIndex.js";
 
 (async () => {
   console.log("Initializing chat engine...");
@@ -24,4 +24,24 @@ import { createIndex, createAPIDocIndex } from "./utils/createIndex.js";
   }
 
   console.log("Api docs indexing initialized");
+})();
+
+(async () => {
+  console.log("Initializing rates negotiation indexing...");
+  const carrier_documents = getRateNegotiationDocuments()
+
+  for (const carrier of carrier_documents) {
+    console.log(
+      `\nProgress ${carrier_documents.indexOf(carrier)}/${
+        carrier_documents.length
+      }`
+    );
+    console.log(
+      `\nIndexing rates negotiation for ${carrier.url}, ${carrier.articles.length} documents\n`
+    );
+    
+    await createRateNegotiationIndex(carrier.articles, carrier.url);
+  }
+
+  console.log("Rates negotiation indexing initialized");
 })();

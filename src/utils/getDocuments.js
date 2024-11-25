@@ -76,3 +76,36 @@ export const getAPIDocuments = () => {
 
   return carriers;
 };
+
+
+export const getRateNegotiationDocuments = () => {
+  const ratesNegotiationData = JSON.parse(
+    fs.readFileSync(
+      path.join(
+        import.meta.dirname,
+        "../",
+        "/data/carriers_rate_negotiation_data.json"
+      ),
+      "utf-8"
+    )
+  );
+
+  const carriers = [];
+
+  ratesNegotiationData.forEach((carrier) => {
+    carriers.push({
+      url: carrier.carrier,
+      articles: carrier.articles.map(
+        (doc) =>
+          new Document({
+            text: doc.text,
+            metadata: {
+              url: doc.url,
+            },
+          })
+      ),
+    });
+  });
+
+  return carriers;
+};
