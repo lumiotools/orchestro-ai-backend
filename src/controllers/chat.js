@@ -153,12 +153,17 @@ export const handleChat = async (req, res) => {
       const isApiDocsAvailable = API_CHAT_RETRIEVERS.some(
         (retriever) => retriever.carrier === extractDomain(domainName)
       );
+      const isRatesNegotiationAvailable =
+        RATES_NEGOTIATION_CHAT_RETRIEVERS.some(
+          (retriever) => retriever.carrier === extractDomain(domainName)
+        );
 
       return {
         ...carrier,
         reviews,
         isRatesAvailable: !!carrier_id,
         isApiDocsAvailable,
+        isRatesNegotiationAvailable,
       };
     }
   );
