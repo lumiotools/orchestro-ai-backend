@@ -8,6 +8,33 @@ const contactData = JSON.parse(
   fs.readFileSync("src/data/contact_forms.json", "utf-8")
 );
 
+export const handleGetFormSchema = async (req, res) => {
+  const { company } = req.query;
+
+  const contactForm = contactData.find((form) => form.company === company);
+
+  if (!contactForm) {
+    res.status(404).json({
+      success: false,
+      message: "Company not found",
+    });
+    return;
+  }
+
+  res.status(200).json({
+    success: true,
+    data: {
+      title: contactForm.title,
+      description: contactForm.description,
+      fields: contactForm.fields.map((field) => ({
+        ...field,
+        fieldId: undefined,
+      })),
+      buttonText: contactForm.button.text,
+    },
+  });
+};
+
 export const handleContactComapny = async (req, res) => {
   const { company, inputs: userInputs } = req.body;
 
@@ -39,7 +66,7 @@ export const handleContactComapny = async (req, res) => {
   }
 
   const browser = await puppeteer.launch({
-    headless: false,
+    // headless: false,
     args: ["--disable-http2"],
   });
 
