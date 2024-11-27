@@ -177,7 +177,8 @@
   {
     "company": "samedaydelivery.com",
     "formUrl": "https://www.samedaydelivery.com/contact-us",
-    "title": "We're always on hand to help with your same day delivery needs. Complete the form to ask about our services, get a quick quote or offer feedback.",
+    "title": "Contact Us",
+    "description": "We're always on hand to help with your same day delivery needs. Complete the form to ask about our services, get a quick quote or offer feedback.",
     "fields": [
       {
         "id": 0,
