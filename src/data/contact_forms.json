@@ -74,54 +74,54 @@
     "feedbackFieldSelector": ".success-message"
   },
   {
-    "company": "ezcourier.com/",
+    "company": "ezcourier.com",
     "formUrl": "https://ezcourier.com/support.php",
     "title": "Live Support !",
     "fields": [
       {
         "id": 0,
         "fieldId": "name2",
-        "title": "Name:",
+        "title": "Name",
         "type": "text",
         "required": true
       },
       {
         "id": 1,
         "fieldId": "phone2",
-        "title": "Phone:",
+        "title": "Phone",
         "type": "text",
         "required": true
       },
       {
         "id": 2,
-        "fieldId": "phone2",
-        "title": "Phone:",
-        "type": "text",
+        "fieldId": "email2",
+        "title": "Email",
+        "type": "email",
         "required": true
       },
       {
         "id": 3,
         "fieldId": "address2",
-        "title": "Address:",
+        "title": "Address",
         "type": "text",
         "required": false
       },
       {
         "id": 4,
         "fieldId": "textarea",
-        "title": " Comments/Questions:",
+        "title": " Comments/Questions",
         "type": "textarea",
         "required": true
       }
     ],
     "button": {
-      "fieldSelector": ".submitForm",
+      "fieldSelector": "#submitForm",
       "text": "SUBMIT"
     },
-    "feedbackFieldSelector": "your request successfully submitted."
+    "feedbackAlert": true
   },
   {
-    "company": "hackbarthdelivery.com/",
+    "company": "hackbarthdelivery.com",
     "formUrl": "https://www.hackbarthdelivery.com/contact/",
     "title": "Contact Us!",
     "fields": [
@@ -143,7 +143,7 @@
         "id": 2,
         "fieldName": "tel-892",
         "title": "Phone Number",
-        "type": "tel",
+        "type": "text",
         "required": false
       },
       {
@@ -165,17 +165,17 @@
         "fieldName": "your-message",
         "title": "Your Message",
         "type": "textarea",
-        "required": false
+        "required": true
       }
     ],
     "button": {
-      "fieldSelector": ".wpcf7-submit",
+      "fieldSelector": ".wpcf7-form-control.wpcf7-submit",
       "text": "SUBMIT...Thank You!"
     },
     "feedbackFieldSelector": ".wpcf7-response-output"
   },
   {
-    "company": "samedaydelivery.com/",
+    "company": "samedaydelivery.com",
     "formUrl": "https://www.samedaydelivery.com/contact-us",
     "title": "We're always on hand to help with your same day delivery needs. Complete the form to ask about our services, get a quick quote or offer feedback.",
     "fields": [
@@ -204,7 +204,7 @@
         "id": 3,
         "fieldId": "phone-201b752f-fc3e-42e2-87d9-89040ff58afb_7987",
         "title": "Phone-Number",
-        "type": "tel",
+        "type": "text",
         "required": false
       },
       {
@@ -217,7 +217,7 @@
       {
         "id": 5,
         "fieldId": "terms_and_conditions-201b752f-fc3e-42e2-87d9-89040ff58afb_7987",
-        "title": "I agree to the terms and conditions",
+        "title": "I agree to the <a href='https://www.airfreight.com/terms-and-conditions'>terms and conditions</a>",
         "type": "checkbox",
         "required": true
       }
