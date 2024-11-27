@@ -72,5 +72,162 @@
       "text": "Send Message"
     },
     "feedbackFieldClassName": "success-message"
+  },
+  {
+    "company": "ezcourier.com/",
+    "formUrl": "https://ezcourier.com/support.php",
+    "title": "Live Support !",
+    "fields": [
+      {
+        "id": 0,
+        "fieldId": "name2",
+        "title": "Name:",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": 1,
+        "fieldId": "phone2",
+        "title": "Phone:",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": 2,
+        "fieldId": "phone2",
+        "title": "Phone:",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": 3,
+        "fieldId": "address2",
+        "title": "Address:",
+        "type": "text",
+        "required": false
+      },
+      {
+        "id": 4,
+        "fieldId": "textarea",
+        "title": " Comments/Questions:",
+        "type": "textarea",
+        "required": true
+      }
+    ],
+    "button": {
+      "fieldClassName": "submitForm",
+      "text": "SUBMIT"
+    },
+    "feedbackFieldClassName": "your request successfully submitted."
+  },
+  {
+    "company": "hackbarthdelivery.com/",
+    "formUrl": "https://www.hackbarthdelivery.com/contact/",
+    "title": "Contact Us!",
+    "fields": [
+      {
+        "id": 0,
+        "fieldName": "your-name",
+        "title": "Name (required)",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": 1,
+        "fieldName": "your-email",
+        "title": "Email (required)",
+        "type": "email",
+        "required": true
+      },
+      {
+        "id": 2,
+        "fieldName": "tel-892",
+        "title": "Phone Number",
+        "type": "tel",  
+        "required": false
+      },
+      {
+        "id": 3,
+        "fieldName": "your-company",
+        "title": "Company",
+        "type": "text",
+        "required": false
+      },
+      {
+        "id": 4,
+        "fieldName": "your-subject",
+        "title": "Subject",
+        "type": "text",
+        "required": false
+      },
+      {
+        "id": 5,
+        "fieldName": "your-message",
+        "title": "Your Message",
+        "type": "textarea",
+        "required": false
+      }
+    ],
+    "button": {
+      "fieldClassName": "wpcf7-submit",
+      "text": "SUBMIT...Thank You!"
+    },
+    "feedbackFieldClassName": "wpcf7-response-output"
+    
+  },
+  {
+    "company": "hackbarthdelivery.com/",
+    "formUrl": "https://www.samedaydelivery.com/contact-us",
+    "title": "We're always on hand to help with your same day delivery needs. Complete the form to ask about our services, get a quick quote or offer feedback.",
+    "fields": [
+      {
+        "id": 0,
+        "fieldId": "firstname-201b752f-fc3e-42e2-87d9-89040ff58afb_7987",
+        "title": "First Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": 1,
+        "fieldId": "lastname-201b752f-fc3e-42e2-87d9-89040ff58afb_7987",
+        "title": "Last Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": 2,
+        "fieldId": "email-201b752f-fc3e-42e2-87d9-89040ff58afb_7987",
+        "title": "Email",
+        "type": "email",  
+        "required": true
+      },
+      {
+        "id": 3,
+        "fieldId": "phone-201b752f-fc3e-42e2-87d9-89040ff58afb_7987",
+        "title": "Phone-Number",
+        "type": "tel",
+        "required": false
+      },
+      {
+        "id": 4,
+        "fieldId": "how_can_we_help_today_-201b752f-fc3e-42e2-87d9-89040ff58afb_7987",
+        "title": "How can we help you today?",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "id": 5,
+        "fieldId": "terms_and_conditions-201b752f-fc3e-42e2-87d9-89040ff58afb_7987",
+        "title": "I agree to the terms and conditions",
+        "type": "checkbox",
+        "required": true
+      }
+    ],
+    "button": {
+      "fieldClassName": "hs-button primary large",
+      "text": "SUBMIT"
+    },
+    "feedbackFieldClassName": "submitted-message"
+    
   }
 ]
