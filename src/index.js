@@ -3,6 +3,7 @@ import cors from "cors";
 import chatRoute from "./routes/chat.js";
 import ratesRoute from "./routes/rates.js";
 import { handleWebsiteScreenshot } from "./controllers/website-screenshot.js";
+import contactRouter from "./routes/contact.js";
 const app = express();
 
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use(
 );
 app.use("/api/v1/", chatRoute);
 app.use("/api/v1/", ratesRoute);
+app.use("/api/v1/", contactRouter);
 
 app.get("/", (req, res) => {
   res.send("server is healthy ...");
