@@ -4,24 +4,25 @@ import fs from "fs";
 
 puppeteer.use(StealthPlugin());
 
-const contactData = JSON.parse(
+export const companyContactFormsData = JSON.parse(
   fs.readFileSync("src/data/contact_forms.json", "utf-8")
 );
 
 export const handleGetFormSchema = async (req, res) => {
   const { company } = req.query;
 
-  const contactForm = contactData.find((form) => form.company === company);
+  const contactForm = companyContactFormsData.find(
+    (form) => form.company === company
+  );
 
   if (!contactForm) {
-    res.status(404).json({
+    return res.status(404).json({
       success: false,
       message: "Company not found",
     });
-    return;
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     data: {
       title: contactForm.title,
@@ -29,6 +30,7 @@ export const handleGetFormSchema = async (req, res) => {
       fields: contactForm.fields.map((field) => ({
         ...field,
         fieldId: undefined,
+        fieldName: undefined,
       })),
       buttonText: contactForm.button.text,
     },
@@ -38,30 +40,28 @@ export const handleGetFormSchema = async (req, res) => {
 export const handleContactComapny = async (req, res) => {
   const { company, inputs: userInputs } = req.body;
 
-  const contactForm = contactData.find((form) => form.company === company);
+  const contactForm = companyContactFormsData.find(
+    (form) => form.company === company
+  );
 
   if (!contactForm) {
-    res.status(404).json({
+    return res.status(404).json({
       success: false,
       message: "Company not found",
     });
-    return;
   }
 
   const formUrl = contactForm.formUrl;
   const fields = contactForm.fields;
-  const buttonClassName = contactForm.button.fieldClassName;
-  const buttonId = contactForm.button.fieldId;
-  const feedbackClassName = contactForm.feedbackFieldClassName;
-  const feedbackId = contactForm.feedbackFieldId;
+  const buttonSelector = contactForm.button.fieldSelector;
+  const feedbackSelector = contactForm.feedbackFieldSelector;
 
   for (const field of fields) {
     if (!userInputs[field.title] && field.required) {
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: `${field.title} is required`,
       });
-      return;
     }
   }
 
@@ -72,23 +72,20 @@ export const handleContactComapny = async (req, res) => {
 
   try {
     const page = await browser.newPage();
-    await page.goto(formUrl, { waitUntil: "networkidle2", timeout: 60000 });
+    await page.goto(formUrl, { waitUntil: "networkidle2" });
 
     for (const field of fields) {
-      const selector = `#${field.fieldId}`;
+      const selector = field.fieldId
+        ? `#${field.fieldId}` // Use `fieldId` if available
+        : `[name="${field.fieldName}"]`; // Use `fieldName` if `fieldId` is not available
 
       await page.waitForSelector(selector, { timeout: 5000 });
 
       await page.type(selector, userInputs[field.title]);
     }
 
-    await page.content();
-
-    await page.waitForSelector(
-      buttonClassName ? `.${buttonClassName}` : `#${buttonId}`,
-      { timeout: 5000 }
-    );
-    await page.click(buttonClassName ? `.${buttonClassName}` : `#${buttonId}`);
+    await page.waitForSelector(buttonSelector, { timeout: 5000 });
+    await page.click(buttonSelector);
 
     await page.waitForNetworkIdle();
 
@@ -105,17 +102,17 @@ export const handleContactComapny = async (req, res) => {
         );
       },
       { timeout: 10000 }, // Adjust timeout as needed
-      feedbackClassName ? `.${feedbackClassName}` : `#${feedbackId}`
+      feedbackSelector
     );
 
     const feedbackText = await page.$eval(
-      feedbackClassName ? `.${feedbackClassName}` : `#${feedbackId}`,
+      feedbackSelector,
       (el) => el.textContent
     );
 
     await browser.close();
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: feedbackText ?? "Form submitted successfully",
     });
@@ -124,7 +121,7 @@ export const handleContactComapny = async (req, res) => {
 
     await browser.close();
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "An error occurred, please check your inputs and try again",
     });

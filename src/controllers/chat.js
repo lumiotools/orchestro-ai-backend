@@ -9,6 +9,7 @@ import {
 } from "../utils/chatEngine.js";
 import { findCarrierShipengineId } from "../utils/shipengineCarrier.js";
 import extractDomain from "../utils/urlExtract.js";
+import { companyContactFormsData } from "./contact.js";
 
 let resultsChatEngine;
 let companyChatEngine;
@@ -158,12 +159,17 @@ export const handleChat = async (req, res) => {
           (retriever) => retriever.carrier === extractDomain(domainName)
         );
 
+      const isContactFromAvailable = companyContactFormsData.find(
+        ({ company }) => company === extractDomain(domainName)
+      );
+
       return {
         ...carrier,
         reviews,
         isRatesAvailable: !!carrier_id,
         isApiDocsAvailable,
         isRatesNegotiationAvailable,
+        isContactFromAvailable,
       };
     }
   );
