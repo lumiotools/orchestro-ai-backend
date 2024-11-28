@@ -61,7 +61,7 @@
   },
   {
     "url": "https://fleetoptics.com",
-    "contactForm": "https://fleetoptix.com/contact-us"
+    "contactForm": "https://fleetoptix.com/contact-us/"
   },
   {
     "url": "https://frayt.com",
@@ -69,7 +69,7 @@
   },
   {
     "url": "https://geodis.com",
-    "contactForm": "https://geodis.com/in-en/contact-us#contact-an-expert"
+    "contactForm": null
   },
   {
     "url": "https://walmartgolocal.com",
@@ -185,7 +185,7 @@
   },
   {
     "url": "https://diligent.com",
-    "contactForm": "https://www.diligent.com/request-a-demo"
+    "contactForm": null
   },
   {
     "url": "https://exprs.com",
@@ -205,7 +205,7 @@
   },
   {
     "url": "https://freightsmith.net",
-    "contactForm": "https://freightsmith.net/contact"
+    "contactForm": null
   },
   {
     "url": "https://gls-group.com",
