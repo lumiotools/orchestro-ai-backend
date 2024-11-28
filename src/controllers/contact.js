@@ -1,7 +1,6 @@
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import fs from "fs";
-import { postPageLoadScript } from "../utils/contactFormMiddlewareScripts.js";
 
 puppeteer.use(StealthPlugin());
 
@@ -68,7 +67,7 @@ export const handleContactComapny = async (req, res) => {
   }
 
   const browser = await puppeteer.launch({
-    headless: false,
+    // headless: false,
     args: ["--disable-http2"],
   });
 
@@ -76,16 +75,10 @@ export const handleContactComapny = async (req, res) => {
     const page = await browser.newPage();
     await page.goto(formUrl, { waitUntil: "networkidle2", timeout: 60000 });
 
-    await postPageLoadScript(company, page);
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     for (const field of fields) {
-      const selector =
-        field.fieldSelector ??
-        (field.fieldId
-          ? `#${field.fieldId}` // Use `fieldId` if available
-          : `[name="${field.fieldName}"]`); // Use `fieldName` if `fieldId` is not available
+      const selector = field.fieldId
+        ? `#${field.fieldId}` // Use `fieldId` if available
+        : `[name="${field.fieldName}"]`; // Use `fieldName` if `fieldId` is not available
 
       await page.waitForSelector(selector, { timeout: 5000 });
 
