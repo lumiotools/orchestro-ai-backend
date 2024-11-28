@@ -1,0 +1,335 @@
+[
+    {
+        "company": "warp.dev",
+        "formUrl": "https://www.warp.dev/general-inquiries",
+        "title": "Get in touch",
+        "description": "",
+        "fields": [
+            {
+                "id": 0,
+                "fieldSelector": "[name='firstname']",
+                "title": "First name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 1,
+                "fieldSelector": "[name='lastname']",
+                "title": "Last name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 2,
+                "fieldSelector": "[name='email']",
+                "title": "Email",
+                "type": "email",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 3,
+                "fieldSelector": "[name='message']",
+                "title": "Message",
+                "type": "textarea",
+                "options": null,
+                "required": true
+            }
+            
+        ],
+        "button": {
+            "fieldSelector": ".css-1ryb3aj",
+            "text": "Submit"
+        },
+        "feedbackFieldSelector": "#successMessage"
+    },
+    {
+        "company": "saltbox.com",
+        "formUrl": "https://www.saltbox.com/speak-to-an-expert",
+        "title": "Let's talk logistics",
+        "description": "Our team will respond within 24 business hours to set up a quick call to answer your questions in depth.",
+        "fields": [
+            {
+                "id": 0,
+                "fieldSelector": "#First-Name-2",
+                "title": "First name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 1,
+                "fieldSelector": "#Last-name",
+                "title": "Last name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 2,
+                "fieldSelector": "#Email-5",
+                "title": "Email",
+                "type": "email",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 3,
+                "fieldSelector": "#Phone-number",
+                "title": "Phone number",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 4,
+                "fieldSelector": "#location-3",
+                "title": "Location",
+                "type": "select",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 5,
+                "fieldSelector": "#Website-URL",
+                "title": "Website URL",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 6,
+                "fieldSelector": "#Company-name",
+                "title": "Company name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 7,
+                "fieldSelector": "#meta__orders_month",
+                "title": "Shipping volume (orders per month)",
+                "type": "select",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 8,
+                "fieldSelector": "#Terms-Checkbox9j",
+                "title": "I accept the Terms",
+                "type": "checkbox",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 9,
+                "fieldSelector": "#Message-3",
+                "title": "Message",
+                "type": "textarea",
+                "options": null,
+                "required": true
+            }
+            
+        ],
+        "button": {
+            "fieldSelector": "[type='submit']",
+            "text": "Submit"
+        },
+        "feedbackFieldSelector": ".success-message"
+    },
+    {
+        "company": "zonos.com",
+        "formUrl": "https://zonos.com/contact-support",
+        "title": "Support at Zonos",
+        "description": "As part of your global team, we take your success seriously. Five-star service that goes above and beyond to answer your questions and help you when you need it most. Call support: U.S.: 435-239-3062 or APAC: +61 1800 950 827",
+        "fields": [
+            {
+                "id": 0,
+                "fieldSelector": "#\\:r0\\:",
+                "title": "First name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 1,
+                "fieldSelector": "#\\:r1\\:",
+                "title": "Last name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 2,
+                "fieldSelector": "#\\:r2\\:",
+                "title": "Email",
+                "type": "email",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 3,
+                "fieldSelector": "#\\:r3\\:",
+                "title": "Phone",
+                "type": "text",
+                "options": null,
+                "required": false
+            },
+            {
+                "id": 4,
+                "fieldSelector": "#\\:r4\\:",
+                "title": "Company name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 5,
+                "fieldSelector": "#\\:r5\\:",
+                "title": "Company website",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 6,
+                "fieldSelector": "#\\:r6\\:",
+                "title": "Message",
+                "type": "textarea",
+                "options": null,
+                "required": true
+            }
+            
+        ],
+        "button": {
+            "fieldSelector": "button[type='button']",
+            "text": "Submit"
+        },
+        "feedbackFieldSelector": "#success"
+    },
+    {
+        "company": "marten.com",
+        "formUrl": "https://www.marten.com/contact/",
+        "title": "Send us a message!",
+        "description": "",
+        "fields": [
+            {
+                "id": 0,
+                "fieldSelector": "#nf-field-1",
+                "title": "Name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 1,
+                "fieldSelector": "#nf-field-2",
+                "title": "Email",
+                "type": "email",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 2,
+                "fieldSelector": "#nf-field-5",
+                "title": "Phone",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 3,
+                "fieldSelector": "#nf-field-6",
+                "title": "Select",
+                "type": "select",
+                "options": null,
+                "required": false
+            },
+            {
+                "id": 4,
+                "fieldSelector": "#nf-field-3",
+                "title": "Message",
+                "type": "textarea",
+                "options": null,
+                "required": false
+            }
+            
+        ],
+        "button": {
+            "fieldSelector": "#nf-field-4",
+            "text": "SUBMIT"
+        },
+        "feedbackFieldSelector": "#nf-form-1-cont"
+    },
+    {
+        "company": "premonition.ai",
+        "formUrl": "https://premonition.ai/contact-us/",
+        "title": "Contact Us",
+        "description": "",
+        "fields": [
+            {
+                "id": 0,
+                "fieldSelector": "[name='first-name']",
+                "title": "First Name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 1,
+                "fieldSelector": "[name='last-name']",
+                "title": "Last Name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 2,
+                "fieldSelector": "[name='your-email']",
+                "title": "Your Email",
+                "type": "email",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 3,
+                "fieldSelector": "[name='job']",
+                "title": "Job Title",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 4,
+                "fieldSelector": "#[name='company']",
+                "title": "Organization/Company",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 5,
+                "fieldSelector": "[name='message']",
+                "title": "I'm interested in:",
+                "type": "textarea",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 6,
+                "fieldSelector": "[name='privacy-policy']",
+                "title": "I have read Terms of Use and Privacy Policy",
+                "type": "checkbox",
+                "options": null,
+                "required": true
+            }
+        ],
+        "button": {
+            "fieldSelector": ".wpcf7-submit",
+            "text": "Submit Form"
+        },
+        "feedbackFieldSelector": ".wpcf7-mail-sent-ok"
+    }
+]
