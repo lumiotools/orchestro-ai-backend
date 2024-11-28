@@ -1,7 +1,7 @@
 [
   {
     "url": "https://twoboxes.com",
-    "contactForm": null
+    "contactForm": "https://www.twoboxes.com/contact"
   },
   {
     "url": "https://twelve48.com",
@@ -9,11 +9,11 @@
   },
   {
     "url": "https://unityscm.com",
-    "contactForm": null
+    "contactForm": "https://www.unityscm.com/contact"
   },
   {
     "url": "https://warp.dev",
-    "contactForm": null
+    "contactForm": "https://www.warp.dev/general-inquiries"
   },
   {
     "url": "https://what3words.com",
@@ -21,7 +21,7 @@
   },
   {
     "url": "https://cart.com",
-    "contactForm": null
+    "contactForm": "https://cart.com/contact/support"
   },
   {
     "url": "https://fetch.com",
@@ -37,7 +37,7 @@
   },
   {
     "url": "https://flagshipcompany.com",
-    "contactForm": null
+    "contactForm": "https://www.flagshipcompany.com/contact-us/"
   },
   {
     "url": "https://hub-box.com",
@@ -57,15 +57,15 @@
   },
   {
     "url": "https://obibox.co",
-    "contactForm": null
+    "contactForm": "https://obibox.co/"
   },
   {
     "url": "https://octup.com",
-    "contactForm": null
+    "contactForm": "https://octup.com/"
   },
   {
     "url": "https://onerail.com",
-    "contactForm": null
+    "contactForm": "https://www.onerail.com/join-our-courier-network/"
   },
   {
     "url": "https://onwarddelivery.com",
@@ -85,7 +85,7 @@
   },
   {
     "url": "https://packupp.com",
-    "contactForm": null
+    "contactForm": "https://packupp.com/en/contact.html"
   },
   {
     "url": "https://parcelforum.com",
@@ -117,7 +117,7 @@
   },
   {
     "url": "https://saltbox.com",
-    "contactForm": null
+    "contactForm": "https://www.saltbox.com/speak-to-an-expert"
   },
   {
     "url": "https://shipscience.com",
@@ -125,11 +125,11 @@
   },
   {
     "url": "https://shipstoresoftware.com",
-    "contactForm": null
+    "contactForm": "https://www.shipstoresoftware.com/"
   },
   {
     "url": "https://shipinfinity.com",
-    "contactForm": null
+    "contactForm": "https://shipinfinity.com/contact"
   },
   {
     "url": "https://stoovo.com",
@@ -141,11 +141,11 @@
   },
   {
     "url": "https://bytrellus.com",
-    "contactForm": null
+    "contactForm": "https://support.bytrellus.com/hc/en-us/requests/new"
   },
   {
     "url": "https://uniuni.com",
-    "contactForm": null
+    "contactForm": "https://www.uniuni.com/support/"
   },
   {
     "url": "https://ziing.com",
@@ -157,11 +157,11 @@
   },
   {
     "url": "https://zonos.com",
-    "contactForm": null
+    "contactForm": "https://zonos.com/contact-support"
   },
   {
     "url": "https://coldtrack.com",
-    "contactForm": null
+    "contactForm": "https://coldtrack.com/contact/"
   },
   {
     "url": "https://ambirobotics.com",
@@ -169,19 +169,19 @@
   },
   {
     "url": "https://deliveright.com",
-    "contactForm": null
+    "contactForm": "https://deliveright.com/contact-us/"
   },
   {
     "url": "https://nexterus.com",
-    "contactForm": null
+    "contactForm": null 
   },
   {
     "url": "https://packsize.com",
-    "contactForm": null
+    "contactForm": "https://www.packsize.com/about/contact-us"
   },
   {
     "url": "https://premonition.ai",
-    "contactForm": null
+    "contactForm": "https://premonition.ai/contact-us/"
   },
   {
     "url": "https://stord.com",
@@ -225,7 +225,7 @@
   },
   {
     "url": "https://samedaydelivery.com",
-    "contactForm": null
+    "contactForm": "https://www.samedaydelivery.com/contact-us"
   },
   {
     "url": "https://gouspack.com",
@@ -249,11 +249,11 @@
   },
   {
     "url": "https://westernpeakslogistics.com",
-    "contactForm": null
+    "contactForm": "https://westernpeakslogistics.com/contact-us"
   },
   {
     "url": "https://medspeed.com",
-    "contactForm": null
+    "contactForm": "https://www.medspeed.com/contact-us/"
   },
   {
     "url": "https://spartanlogistics.com",
@@ -261,7 +261,7 @@
   },
   {
     "url": "https://lanterdeliverysystems.com",
-    "contactForm": null
+    "contactForm": "https://www.lanterdeliverysystems.com/contact-us"
   },
   {
     "url": "https://tukaway.com",
@@ -293,11 +293,11 @@
   },
   {
     "url": "https://horizonlogistics.com",
-    "contactForm": null
+    "contactForm": "https://horizonlogistics.com/contact-us/"
   },
   {
     "url": "https://eagleexpress.com",
-    "contactForm": null
+    "contactForm": "https://www.eagleexpress.com/dallas-courier"
   },
   {
     "url": "https://hdsexpress.com",
@@ -305,7 +305,7 @@
   },
   {
     "url": "https://quickdelivers.com",
-    "contactForm": null
+    "contactForm": "https://quickdelivers.com/contact/"
   },
   {
     "url": "https://redlinecourier.com",
@@ -313,7 +313,7 @@
   },
   {
     "url": "https://marten.com",
-    "contactForm": null
+    "contactForm": "https://www.marten.com/contact/"
   },
   {
     "url": "https://westsideexpress.net",
@@ -321,7 +321,7 @@
   },
   {
     "url": "https://cometdelivery.com",
-    "contactForm": null
+    "contactForm": "https://cometdelivery.com/contact-us/"
   },
   {
     "url": "https://xpo.com",
@@ -329,7 +329,7 @@
   },
   {
     "url": "https://californiacourierservices.com",
-    "contactForm": null
+    "contactForm": "https://www.californiacourierservices.com/contact"
   },
   {
     "url": "https://jetdelivery.com",
@@ -365,11 +365,11 @@
   },
   {
     "url": "https://corporatecouriers.com",
-    "contactForm": null
+    "contactForm": "https://www.shipexlogistics.com/contact-us/"
   },
   {
     "url": "https://smart-delivery.com",
-    "contactForm": null
+    "contactForm": "https://smart-delivery.com/contact/"
   },
   {
     "url": "https://goshare.co",
@@ -385,7 +385,7 @@
   },
   {
     "url": "https://point2pointglobal.com",
-    "contactForm": null
+    "contactForm": "https://www.p2pg.com/contact/"
   },
   {
     "url": "https://shipmercury.com",
@@ -405,7 +405,7 @@
   },
   {
     "url": "https://parcelsinc.com",
-    "contactForm": null
+    "contactForm": "https://parcelsinc.com/contact-us/"
   },
   {
     "url": "https://hollandregional.com",
@@ -413,11 +413,11 @@
   },
   {
     "url": "https://prioritydispatch.com",
-    "contactForm": null
+    "contactForm": "https://www.prioritydispatch.com/contact/"
   },
   {
     "url": "https://hackbarthdelivery.com",
-    "contactForm": null
+    "contactForm": "https://www.hackbarthdelivery.com/contact/"
   },
   {
     "url": "https://nationwideexpress.com",
@@ -425,7 +425,7 @@
   },
   {
     "url": "https://metro-courier.com",
-    "contactForm": null
+    "contactForm": "https://metro-courier.com/contact-metro-courier/"
   },
   {
     "url": "https://jetlinelogistics.com",
@@ -433,7 +433,7 @@
   },
   {
     "url": "https://smtl.com",
-    "contactForm": null
+    "contactForm": "https://www.smtl.com/contact-smt"
   },
   {
     "url": "https://americanlc.com",
@@ -441,7 +441,7 @@
   },
   {
     "url": "https://starfreight.com",
-    "contactForm": null
+    "contactForm": "https://starfreight.com/"
   },
   {
     "url": "https://carey.com",
