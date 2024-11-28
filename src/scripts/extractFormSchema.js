@@ -154,7 +154,7 @@ For the company, derive the name from the domain in the URL "${url}". Ensure the
 // Main function to run Puppeteer and OpenAI
 const scrapeForms = async () => {
   const companies = JSON.parse(
-    fs.readFileSync("src/data/contact_form_urls_1.json", "utf-8")
+    fs.readFileSync("../data/contact_form_urls_2.json", "utf-8")
   ).filter((company) => company.contactForm);
 
   const browser = await puppeteer.launch({
@@ -166,7 +166,7 @@ const scrapeForms = async () => {
 
   try {
     results = JSON.parse(
-      fs.readFileSync("src/data/contact_forms_scrape_1.json", "utf-8")
+      fs.readFileSync("../data/contact_forms_scrape_2.json", "utf-8")
     );
   } catch (error) {}
 
@@ -194,7 +194,7 @@ const scrapeForms = async () => {
       }
     }
     fs.writeFileSync(
-      "src/data/contact_forms_scrape_1.json",
+      "../data/contact_forms_scrape_2.json",
       JSON.stringify(results, null, 4)
     );
   }
