@@ -1,7 +1,10 @@
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import fs from "fs";
-import { postPageLoadScript } from "../utils/contactFormMiddlewareScripts.js";
+import {
+  feedbackCheckScript,
+  postPageLoadScript,
+} from "../utils/contactFormMiddlewareScripts.js";
 
 puppeteer.use(StealthPlugin());
 
@@ -114,6 +117,8 @@ export const handleContactComapny = async (req, res) => {
     await page.click(buttonSelector);
 
     await page.waitForNetworkIdle();
+
+    await feedbackCheckScript(company, page);
 
     if (feedbackSelector) {
       // Wait for the feedback element to become visible

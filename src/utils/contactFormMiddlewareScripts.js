@@ -4,6 +4,18 @@ export const postPageLoadScript = async (company, page) => {
   }
 };
 
-export const gojitsuScript = async (page) => {
-  page.click("[data-id='#btn1']");
+export const feedbackCheckScript = async (company, page) => {
+  if (company === "frayt.com") {
+    await fraytScript(page);
+  }
+};
+
+const gojitsuScript = async (page) => {
+  await page.click("[data-id='#btn1']");
+};
+
+const fraytScript = async (page) => {
+  await page.waitForFunction(() => {
+    return window.location.href.includes("#demo-success"), { timeout: 10000 };
+  });
 };
