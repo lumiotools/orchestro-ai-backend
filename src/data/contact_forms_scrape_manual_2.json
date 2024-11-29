@@ -1,49 +1,191 @@
 [
     {
-        "company": "warp.dev",
-        "formUrl": "https://www.warp.dev/general-inquiries",
-        "title": "Get in touch",
-        "description": "",
+        "company": "uniuni.com",
+        "formUrl": "https://www.uniuni.com/support/",
+        "title": "Customer Support Form",
+        "description": null,
         "fields": [
             {
                 "id": 0,
-                "fieldSelector": "[name='firstname']",
-                "title": "First name",
-                "type": "text",
-                "options": null,
+                "fieldSelector": "#input-contact-reason",
+                "title": "Contact Reason",
+                "type": "select",
+                "options": [
+                    {
+                        "value": "Address Correction",
+                        "label": "Address Correction"
+                    },
+                    {
+                        "value": "Complaint (Delivery)",
+                        "label": "Complaint (Delivery)"
+                    },
+                    {
+                        "value": "Complaint (Driver)",
+                        "label": "Complaint (Driver)"
+                    },
+                    {
+                        "value": "Delivery Inquiry",
+                        "label": "Delivery Inquiry"
+                    },
+                    {
+                        "value": "Second Delivery",
+                        "label": "Second Delivery"
+                    }
+                ],
                 "required": true
             },
             {
                 "id": 1,
-                "fieldSelector": "[name='lastname']",
-                "title": "Last name",
-                "type": "text",
-                "options": null,
+                "fieldSelector": "#input-default",
+                "title": "Details",
+                "type": "select",
+                "options": [],
                 "required": true
             },
             {
                 "id": 2,
-                "fieldSelector": "[name='email']",
-                "title": "Email",
-                "type": "email",
+                "fieldSelector": "#input-first-name",
+                "title": "First Name",
+                "type": "textarea",
                 "options": null,
                 "required": true
             },
             {
                 "id": 3,
-                "fieldSelector": "[name='message']",
-                "title": "Message",
+                "fieldSelector": "#input-last-name",
+                "title": "Last Name",
                 "type": "textarea",
                 "options": null,
                 "required": true
+            },
+            {
+                "id": 4,
+                "fieldSelector": "#input-email",
+                "title": "Email",
+                "type": "textarea",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 5,
+                "fieldSelector": "#input-tracking-number",
+                "title": "Tracking Number",
+                "type": "textarea",
+                "options": null,
+                "required": false
+            },
+            {
+                "id": 6,
+                "fieldSelector": "#input-location-country",
+                "title": "Country",
+                "type": "select",
+                "options": [
+                    {
+                        "value": "Canada",
+                        "label": "Canada"
+                    },
+                    {
+                        "value": "USA",
+                        "label": "USA"
+                    }
+                ],
+                "required": true
+            },
+            {
+                "id": 7,
+                "fieldSelector": "#input-location-canada",
+                "title": "Location",
+                "type": "select",
+                "options": [
+                    {
+                        "value": "Calgary",
+                        "label": "Calgary"
+                    },
+                    {
+                        "value": "Cambridge",
+                        "label": "Cambridge"
+                    },
+                    {
+                        "value": "Edmonton",
+                        "label": "Edmonton"
+                    },
+                    {
+                        "value": "Halifax",
+                        "label": "Halifax"
+                    },
+                    {
+                        "value": "Hamilton",
+                        "label": "Hamilton"
+                    },
+                    {
+                        "value": "London",
+                        "label": "London"
+                    },
+                    {
+                        "value": "Montreal",
+                        "label": "Montreal"
+                    },
+                    {
+                        "value": "North York",
+                        "label": "North York"
+                    },
+                    {
+                        "value": "Ottawa",
+                        "label": "Ottawa"
+                    },
+                    {
+                        "value": "Quebec City",
+                        "label": "Quebec City"
+                    },
+                    {
+                        "value": "Regina",
+                        "label": "Regina"
+                    },
+                    {
+                        "value": "Saskatoon",
+                        "label": "Saskatoon"
+                    },
+                    {
+                        "value": "Toronto",
+                        "label": "Toronto"
+                    },
+                    {
+                        "value": "Vancouver",
+                        "label": "Vancouver"
+                    },
+                    {
+                        "value": "Victoria",
+                        "label": "Victoria"
+                    },
+                    {
+                        "value": "Winnipeg",
+                        "label": "Winnipeg"
+                    }
+                ],
+                "required": true
+            },
+            {
+                "id": 8,
+                "fieldSelector": "#input-content",
+                "title": "How we can help?",
+                "type": "textarea",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 9,
+                "fieldSelector": "#attachment-select",
+                "title": "Attachment",
+                "type": "file",
+                "options": null,
+                "required": false
             }
-            
         ],
         "button": {
-            "fieldSelector": ".css-1ryb3aj",
-            "text": "Submit"
+            "fieldSelector": "#send-button",
+            "text": "Send"
         },
-        "feedbackFieldSelector": "#successMessage"
+        "feedbackFieldSelector": "#successModal"
     },
     {
         "company": "saltbox.com",
@@ -139,130 +281,7 @@
         },
         "feedbackFieldSelector": ".success-message"
     },
-    {
-        "company": "zonos.com",
-        "formUrl": "https://zonos.com/contact-support",
-        "title": "Support at Zonos",
-        "description": "As part of your global team, we take your success seriously. Five-star service that goes above and beyond to answer your questions and help you when you need it most. Call support: U.S.: 435-239-3062 or APAC: +61 1800 950 827",
-        "fields": [
-            {
-                "id": 0,
-                "fieldSelector": "#\\:r0\\:",
-                "title": "First name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 1,
-                "fieldSelector": "#\\:r1\\:",
-                "title": "Last name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 2,
-                "fieldSelector": "#\\:r2\\:",
-                "title": "Email",
-                "type": "email",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 3,
-                "fieldSelector": "#\\:r3\\:",
-                "title": "Phone",
-                "type": "text",
-                "options": null,
-                "required": false
-            },
-            {
-                "id": 4,
-                "fieldSelector": "#\\:r4\\:",
-                "title": "Company name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 5,
-                "fieldSelector": "#\\:r5\\:",
-                "title": "Company website",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 6,
-                "fieldSelector": "#\\:r6\\:",
-                "title": "Message",
-                "type": "textarea",
-                "options": null,
-                "required": true
-            }
-            
-        ],
-        "button": {
-            "fieldSelector": "button[type='button']",
-            "text": "Submit"
-        },
-        "feedbackFieldSelector": "#success"
-    },
-    {
-        "company": "marten.com",
-        "formUrl": "https://www.marten.com/contact/",
-        "title": "Send us a message!",
-        "description": "",
-        "fields": [
-            {
-                "id": 0,
-                "fieldSelector": "#nf-field-1",
-                "title": "Name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 1,
-                "fieldSelector": "#nf-field-2",
-                "title": "Email",
-                "type": "email",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 2,
-                "fieldSelector": "#nf-field-5",
-                "title": "Phone",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 3,
-                "fieldSelector": "#nf-field-6",
-                "title": "Select",
-                "type": "select",
-                "options": null,
-                "required": false
-            },
-            {
-                "id": 4,
-                "fieldSelector": "#nf-field-3",
-                "title": "Message",
-                "type": "textarea",
-                "options": null,
-                "required": false
-            }
-            
-        ],
-        "button": {
-            "fieldSelector": "#nf-field-4",
-            "text": "SUBMIT"
-        },
-        "feedbackFieldSelector": "#nf-form-1-cont"
-    },
+   
     {
         "company": "premonition.ai",
         "formUrl": "https://premonition.ai/contact-us/",

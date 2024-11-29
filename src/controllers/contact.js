@@ -9,7 +9,8 @@ import {
 puppeteer.use(StealthPlugin());
 
 export const companyContactFormsData = JSON.parse(
-  fs.readFileSync("src/data/contact_forms.json", "utf-8")
+  fs.readFileSync("src/data/contact_form_all.json", "utf-8")
+  // fs.readFileSync("src/data/contact_forms_scrape_1.json", "utf-8")
 );
 
 export const handleGetFormSchema = async (req, res) => {
@@ -64,14 +65,14 @@ export const handleContactComapny = async (req, res) => {
   for (const field of fields) {
     if (!userInputs[field.title] && field.required) {
       return res.status(500).json({
-        success: false,
+        success: true,
         message: `${field.title} is required`,
       });
     }
   }
 
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: ["--disable-http2"],
   });
 
@@ -97,11 +98,24 @@ export const handleContactComapny = async (req, res) => {
           const element = document.querySelector(selector);
           if (element) element.click();
         }, selector);
+        // await page.waitForTimeout(4000);
       } else if (field.type === "select") {
-        await page.select(selector, userInputs[field.title]);
-      } else {
+        try {
+          await page.select(selector, userInputs[field.title]);
+        } catch (e) {
+          await page.evaluate((selector, value) => {
+            const element = document.querySelector(selector);
+            if (element) {
+              element.value = value;
+            }
+          }, selector, userInputs[field.title]);  // Pass both arguments
+        }
+      }
+        else {
         await page.type(selector, userInputs[field.title]);
       }
+      //test
+      console.log("written field ", field.title);
     }
 
     let feedbackText = "Form submitted successfully";
@@ -133,7 +147,7 @@ export const handleContactComapny = async (req, res) => {
             style.opacity !== "0"
           );
         },
-        { timeout: 10000 }, // Adjust timeout as needed
+        { timeout: 15000 }, // Adjust timeout as needed
         feedbackSelector
       );
 
@@ -147,6 +161,7 @@ export const handleContactComapny = async (req, res) => {
       message: feedbackText,
     });
   } catch (error) {
+    //console.log("funny error");
     console.error(error);
 
     await browser.close();
