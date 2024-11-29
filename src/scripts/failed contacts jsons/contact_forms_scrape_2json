@@ -1,100 +1,4 @@
 [
-    
-    {
-        "company": "unityscm.com",
-        "formUrl": "https://www.unityscm.com/contact",
-        "title": "Contact Us",
-        "description": "Our friendly team would love to hear from you!",
-        "fields": [
-            {
-                "id": 0,
-                "fieldSelector": "[name='email']",
-                "title": "yourname@company.com",
-                "type": "email",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 1,
-                "fieldSelector": "[name='firstname']",
-                "title": "First Name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 2,
-                "fieldSelector": "[name='lastname']",
-                "title": "Last Name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 3,
-                "fieldSelector": "[name='phone']",
-                "title": "Phone Number",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 4,
-                "fieldSelector": "[name='phone']",
-                "title": "I'm Contacting You About",
-                "type": "select",
-                "options": [
-                {
-                    "value": "Careers",
-                    "label": "Careers"
-                },
-                {
-                    "value": "Customer Support",
-                    "label": "Customer Support"
-                },
-                {
-                    "value": "Demo Request",
-                    "label": "Demo Request"
-                },
-                {
-                    "value": "Investor Relations", 
-                    "label": "Investor Relations"
-                },
-                {
-                    "value": "Partnership",
-                    "label": "Partnership"
-                },
-                {
-                    "value": "Product Information",
-                    "label": "Product Information"
-                },
-                {
-                    "value": "Sales Inquiry",
-                    "label": "Sales Inquiry"
-                },
-                {
-                    "value": "Other",
-                    "label": "Other"
-                }
-                ],
-                "required": true
-            },
-            {
-                "id": 5,
-                "fieldSelector": "[name='message']",
-                "title": "Message",
-                "type": "textarea",
-                "options": null,
-                "required": true
-            }
-        ],
-        "button": {
-            "fieldSelector": ".hs-cta-trigger-button",
-            "text": "Submit"
-        },
-        "feedbackFieldSelector": "#hbspt-form-9766dca1-dfb3-4d39-be9e-9fb4686fa0a9"
-    },
-    
     {
         "company": "flagshipcompany.com",
         "formUrl": "https://www.flagshipcompany.com/contact-us/",
@@ -485,7 +389,6 @@
         },
         "feedbackFieldSelector": "#successMessage"
     },
-    
     {
         "company": "shipinfinity.com",
         "formUrl": "https://shipinfinity.com/contact",
@@ -682,7 +585,6 @@
         },
         "feedbackFieldSelector": "#upload-error"
     },
-    
     {
         "company": "coldtrack.com",
         "formUrl": "https://coldtrack.com/contact/",
@@ -744,7 +646,6 @@
         },
         "feedbackFieldSelector": "#gform_confirmation_message_3"
     },
-    
     {
         "company": "samedaydelivery.com",
         "formUrl": "https://www.samedaydelivery.com/contact-us",
@@ -811,7 +712,6 @@
         },
         "feedbackFieldSelector": "#hs_form_target_contact_form"
     },
-    
     {
         "company": "medspeed.com",
         "formUrl": "https://www.medspeed.com/contact-us/",
@@ -960,7 +860,6 @@
         },
         "feedbackFieldSelector": "#gform_confirmation_message_1"
     },
-    
     {
         "company": "quickdelivers.com",
         "formUrl": "https://quickdelivers.com/contact/",
@@ -1081,51 +980,6 @@
         "feedbackFieldSelector": "#gform_confirmation_message_1"
     },
     {
-        "company": "californiacourierservices.com",
-        "formUrl": "https://www.californiacourierservices.com/contact",
-        "title": "Contact Us",
-        "description": "We are proudly delivering packages throughout California. Please contact us via email, phone or online form below.",
-        "fields": [
-            {
-                "id": 0,
-                "fieldSelector": "#Name",
-                "title": "Name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 1,
-                "fieldSelector": "#Email",
-                "title": "Email",
-                "type": "email",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 2,
-                "fieldSelector": "#Phone-Number",
-                "title": "Phone Number",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 3,
-                "fieldSelector": "#Message",
-                "title": "Message",
-                "type": "textarea",
-                "options": null,
-                "required": false
-            }
-        ],
-        "button": {
-            "fieldSelector": ".submit-button-2",
-            "text": "Send Message"
-        },
-        "feedbackFieldSelector": ".success-message"
-    },
-    {
         "company": "corporatecouriers.com",
         "formUrl": "https://www.shipexlogistics.com/contact-us/",
         "title": "Contact Us - ShipEX Logistics",
@@ -1187,166 +1041,6 @@
         "feedbackFieldSelector": ".wpcf7-response-output"
     },
     {
-        "company": "smart-delivery.com",
-        "formUrl": "https://smart-delivery.com/contact/",
-        "title": "Contact Us",
-        "description": "If you need assistance, please fill out the below form to contact us.",
-        "fields": [
-            {
-                "id": 0,
-                "fieldSelector": "#wpforms-825-field_5",
-                "title": "How can we help you today?",
-                "type": "select",
-                "options": [
-                    {
-                        "value": "I want to open a new billing account for my business",
-                        "label": "I want to open a new billing account for my business"
-                    },
-                    {
-                        "value": "I want to setup a new online username for my account",
-                        "label": "I want to setup a new online username for my account"
-                    },
-                    {
-                        "value": "I forgot my login information for my account",
-                        "label": "I forgot my login information for my account"
-                    },
-                    {
-                        "value": "I need a shipping quote",
-                        "label": "I need a shipping quote"
-                    },
-                    {
-                        "value": "I need a distribution quote",
-                        "label": "I need a distribution quote"
-                    },
-                    {
-                        "value": "I need a warehousing quote",
-                        "label": "I need a warehousing quote"
-                    },
-                    {
-                        "value": "I have a billing question",
-                        "label": "I have a billing question"
-                    },
-                    {
-                        "value": "I want to pay an invoice",
-                        "label": "I want to pay an invoice"
-                    },
-                    {
-                        "value": "I want to drive for Smart Delivery as a contract vendor",
-                        "label": "I want to drive for Smart Delivery as a contract vendor"
-                    },
-                    {
-                        "value": "I want to submit a review of my service",
-                        "label": "I want to submit a review of my service"
-                    },
-                    {
-                        "value": "Other (Please Specify Below)",
-                        "label": "Other (Please Specify Below)"
-                    }
-                ],
-                "required": true
-            },
-            {
-                "id": 1,
-                "fieldSelector": "#wpforms-825-field_9",
-                "title": "Name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 2,
-                "fieldSelector": "#wpforms-825-field_3",
-                "title": "Business Name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 3,
-                "fieldSelector": "#wpforms-825-field_1",
-                "title": "E-mail Address",
-                "type": "email",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 4,
-                "fieldSelector": "#wpforms-825-field_4",
-                "title": "Phone Number",
-                "type": "tel",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 5,
-                "fieldSelector": "#wpforms-825-field_29",
-                "title": "Preferred Contact Method",
-                "type": "radio",
-                "options": [
-                    {
-                        "value": "Email",
-                        "label": "Email"
-                    },
-                    {
-                        "value": "Phone",
-                        "label": "Phone"
-                    }
-                ],
-                "required": true
-            },
-            {
-                "id": 6,
-                "fieldSelector": "#wpforms-825-field_16",
-                "title": "Where do you require service? (Check all that apply)",
-                "type": "checkbox",
-                "options": [
-                    {
-                        "value": "Minneapolis/St. Paul, MN",
-                        "label": "Minneapolis/St. Paul, MN"
-                    },
-                    {
-                        "value": "Dallas/Ft Worth, TX",
-                        "label": "Dallas/Ft Worth, TX"
-                    },
-                    {
-                        "value": "Other",
-                        "label": "Other"
-                    }
-                ],
-                "required": true
-            },
-            {
-                "id": 7,
-                "fieldSelector": "#wpforms-825-field_12",
-                "title": "Pick Up Address",
-                "type": "address",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 8,
-                "fieldSelector": "#wpforms-825-field_13",
-                "title": "Delivery Address",
-                "type": "address",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 9,
-                "fieldSelector": "#wpforms-825-field_2",
-                "title": "Comment or Message",
-                "type": "textarea",
-                "options": null,
-                "required": false
-            }
-        ],
-        "button": {
-            "fieldSelector": "#wpforms-submit-825",
-            "text": "Submit"
-        },
-        "feedbackFieldSelector": ".wpforms-error-noscript"
-    },
-    {
         "company": "point2pointglobal.com",
         "formUrl": "https://www.p2pg.com/contact/",
         "title": "Contact Us",
@@ -1380,177 +1074,6 @@
         "button": {
             "fieldSelector": ".wpcf7-form-control.wpcf7-submit",
             "text": "Send"
-        },
-        "feedbackFieldSelector": ".wpcf7-response-output"
-    },
-    {
-        "company": "parcelsinc.com",
-        "formUrl": "https://parcelsinc.com/contact-us/",
-        "title": "Contact Parcels",
-        "description": "Explore eDiscovery, Litigation Support, Court Research, Forensics, and more. Contact us to see how we can assist you.",
-        "fields": [
-            {
-                "id": 0,
-                "fieldSelector": "#firstname",
-                "title": "First Name*:",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 1,
-                "fieldSelector": "#lastname",
-                "title": "Last Name*:",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 2,
-                "fieldSelector": "#company",
-                "title": "Company:",
-                "type": "text",
-                "options": null,
-                "required": false
-            },
-            {
-                "id": 3,
-                "fieldSelector": "#email",
-                "title": "E-mail*:",
-                "type": "email",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 4,
-                "fieldSelector": "#phone",
-                "title": "Phone:",
-                "type": "text",
-                "options": null,
-                "required": false
-            },
-            {
-                "id": 5,
-                "fieldSelector": "[name='service']",
-                "title": "Service Interested In:",
-                "type": "select",
-                "options": [
-                    {
-                        "value": "General Inquiry:info@parcelsinc.com",
-                        "label": "General Inquiry"
-                    },
-                    {
-                        "value": "Litigation Support and eDiscovery Services:litsupport@parcelsinc.com",
-                        "label": "Litigation Support and eDiscovery Services"
-                    },
-                    {
-                        "value": "Trial Support:tkady@parcelsinc.com,acasale@parcelsinc.com,eservices@parcelsinc.com",
-                        "label": "Trial Support"
-                    },
-                    {
-                        "value": "Document Technology/Printing & Court eFiling/Copies:eservices@parcelsinc.com",
-                        "label": "Printing & Court eFiling/Copies"
-                    },
-                    {
-                        "value": "Background and Property Search:orders@parcelsinc.com",
-                        "label": "Background and Property Search"
-                    },
-                    {
-                        "value": "Service of Process:sop@parcelsinc.com",
-                        "label": "Service of Process"
-                    },
-                    {
-                        "value": "Incorporation and Registered Agent Services:firststate@parcelsinc.com",
-                        "label": "Incorporation and Registered Agent Services"
-                    },
-                    {
-                        "value": "GRC Services:consulting@parcelsinc.com",
-                        "label": "GRC Services"
-                    },
-                    {
-                        "value": "Courier and Delivery Services:deliveries@parcelsinc.com",
-                        "label": "Courier and Delivery Services"
-                    },
-                    {
-                        "value": "Metrocolor Services:metrocolor@parcelsinc.com",
-                        "label": "Metrocolor Services"
-                    },
-                    {
-                        "value": "Facilities Management:tkady@parcelsinc.com",
-                        "label": "Facilities Management"
-                    },
-                    {
-                        "value": "Careers:humanresources@parcelsinc.com",
-                        "label": "Careers"
-                    }
-                ],
-                "required": false
-            },
-            {
-                "id": 6,
-                "fieldSelector": "[name='message']",
-                "title": "Questions/Comments:",
-                "type": "textarea",
-                "options": null,
-                "required": false
-            }
-        ],
-        "button": {
-            "fieldSelector": "#contact-form button[type='submit']",
-            "text": "Submit"
-        },
-        "feedbackFieldSelector": ".grecaptcha-badge"
-    },
-    {
-        "company": "prioritydispatch.com",
-        "formUrl": "https://www.prioritydispatch.com/contact/",
-        "title": "Contact – Priority Dispatch",
-        "description": "If you have questions or would like to discuss how Priority Dispatch can improve your business, let’s talk. Fill out the form here and someone from our staff will be in touch with you as soon as possible. We look forward to talking with you!",
-        "fields": [
-            {
-                "id": 0,
-                "fieldSelector": "[name='input-name']",
-                "title": "Name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 1,
-                "fieldSelector": "[name='input-surname']",
-                "title": "Surname",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 2,
-                "fieldSelector": "[name='input-organization']",
-                "title": "Organization",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 3,
-                "fieldSelector": "[name='input-email']",
-                "title": "Email Address",
-                "type": "email",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 4,
-                "fieldSelector": "[name='input-questions']",
-                "title": "Questions/Comments",
-                "type": "textarea",
-                "options": null,
-                "required": false
-            }
-        ],
-        "button": {
-            "fieldSelector": ".wpcf7-form-control.wpcf7-submit",
-            "text": "Submit"
         },
         "feedbackFieldSelector": ".wpcf7-response-output"
     },
@@ -1675,92 +1198,6 @@
             "text": "Submit"
         },
         "feedbackFieldSelector": ".frm_ajax_loading"
-    },
-    {
-        "company": "smtl.com",
-        "formUrl": "https://www.smtl.com/contact-smt",
-        "title": "Contact SMT",
-        "description": "Contact SMT",
-        "fields": [
-            {
-                "id": 0,
-                "fieldSelector": "#Contact-6-First-Name-2",
-                "title": "First name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 1,
-                "fieldSelector": "#Contact-6-Last-Name-3",
-                "title": "Last name",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 2,
-                "fieldSelector": "#Contact-6-Email-3",
-                "title": "Email",
-                "type": "email",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 3,
-                "fieldSelector": "#Contact-6-Phone-3",
-                "title": "Phone number",
-                "type": "text",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 4,
-                "fieldSelector": "#Contact-6-Select-3",
-                "title": "Choose a topic",
-                "type": "select",
-                "options": [
-                    {
-                        "value": "rate-quote",
-                        "label": "Rate Quote"
-                    },
-                    {
-                        "value": "order-tracking",
-                        "label": "Order Tracking"
-                    },
-                    {
-                        "value": "pickup-request",
-                        "label": "Pickup Request"
-                    },
-                    {
-                        "value": "General",
-                        "label": "General"
-                    }
-                ],
-                "required": true
-            },
-            {
-                "id": 5,
-                "fieldSelector": "#Contact-6-Message-3",
-                "title": "Message",
-                "type": "textarea",
-                "options": null,
-                "required": true
-            },
-            {
-                "id": 6,
-                "fieldSelector": "#Contact-6-Checkbox",
-                "title": "I accept the Terms",
-                "type": "checkbox",
-                "options": null,
-                "required": true
-            }
-        ],
-        "button": {
-            "fieldSelector": "#w-node-_56649064-34fe-6638-296d-7d8b8caf201c-4e5fafeb",
-            "text": "Submit"
-        },
-        "feedbackFieldSelector": ".rl-success-message-2"
     },
     {
         "company": "starfreight.com",
