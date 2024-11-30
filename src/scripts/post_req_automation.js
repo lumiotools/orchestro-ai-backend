@@ -2,7 +2,7 @@ import fs from 'fs';
 
 const companyContactFormsData = JSON.parse(
     // fs.readFileSync("./failed_companies.json", "utf-8")
-    fs.readFileSync("../data/contact_forms_scrape_manual_2.json", "utf-8")
+    fs.readFileSync("../data/contact_form_all.json", "utf-8")
   );
 
 // const goodCompanies = JSON.parse(
@@ -25,7 +25,7 @@ const companyContactFormsData = JSON.parse(
     const message = "This is a test message";
     const obj = {};
     
-
+    let skip = false;
     if(!all.fields)
         continue;
     for (let j = 0; j < all.fields.length; j++) {
@@ -48,13 +48,21 @@ const companyContactFormsData = JSON.parse(
             obj[all.fields[j].title] = company;
         }
         else if(all.fields[j].type === "select") {
-            //console.log("this is select ", all.fields[j]);
+            // console.log("this is select ", all.fields[j]);
+            // if(all.fields[j].options === null) {
+            //   skip = true;
+            //   break;
+            // }
             obj[all.fields[j].title] = all.fields[j].options[0].value;
         }
         else if(all.fields[j].required === true) {
             obj[all.fields[j].title] = "sample";
         }
         
+    }
+    if(skip) {
+      skip = false;
+      continue;
     }
     ary.push({company: all.company, inputs: obj});
 }
