@@ -317,6 +317,88 @@
         "feedbackFieldSelector": ".et-pb-contact-message"
     },
     {
+        "company": "gojitsu.com",
+        "formUrl": "https://gojitsu.com/contact",
+        "title": "Contact Us",
+        "description": "Talk with a Logistics Expert to Learn How We Can Transform Your Delivery Process",
+        "fields": [
+            {
+                "id": 0,
+                "fieldSelector": "[id='firstname-f7706ecb-545b-4afc-953a-af72763e978f_4533']",
+                "title": "First Name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 1,
+                "fieldSelector": "[id='lastname-f7706ecb-545b-4afc-953a-af72763e978f_4533']",
+                "title": "Last Name",
+                "type": "text",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 2,
+                "fieldSelector": "[id='email-f7706ecb-545b-4afc-953a-af72763e978f_4533']",
+                "title": "Email",
+                "type": "email",
+                "options": null,
+                "required": true
+            },
+            {
+                "id": 3,
+                "fieldSelector": "[id='phone-f7706ecb-545b-4afc-953a-af72763e978f_4533']",
+                "title": "Phone Number",
+                "type": "text",
+                "options": null,
+                "required": false
+            },
+            {
+                "id": 4,
+                "fieldSelector": "[id='reason_for_contact-f7706ecb-545b-4afc-953a-af72763e978f_4533']",
+                "title": "Reason for Contact",
+                "type": "select",
+                "options": [
+                    {
+                        "value": "Questions about package tracking",
+                        "label": "Package Tracking Questions"
+                    },
+                    {
+                        "value": "Questions about drivers",
+                        "label": "Driver Questions"
+                    },
+                    {
+                        "value": "Questions about products/services",
+                        "label": "Product & Service Questions"
+                    },
+                    {
+                        "value": "Questions about partnerships",
+                        "label": "Partnership Questions"
+                    },
+                    {
+                        "value": "General or other questions",
+                        "label": "General or Other Questions"
+                    }
+                ],
+                "required": true
+            },
+            {
+                "id": 5,
+                "fieldSelector": "[id='message-f7706ecb-545b-4afc-953a-af72763e978f_4533']",
+                "title": "Message",
+                "type": "textarea",
+                "options": null,
+                "required": false
+            }
+        ],
+        "button": {
+            "fieldSelector": ".hs-button.primary.large",
+            "text": "Contact Us Today"
+        },
+        "feedbackFieldSelector": ".submitted-message"
+    },
+    {
         "company": "deliveright.com",
         "formUrl": "https://deliveright.com/contact-us/",
         "title": "Contact Us",
